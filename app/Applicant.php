@@ -11,9 +11,15 @@ class Applicant extends Model
 
     protected $fillable = [
         'title', 'first_name', 'middle_initial', 'last_name', 'date_of_birth', 'address', 'mobile_number',
-        'home_number', 'email', 'gender', 'initial_interview', 'exam_interview', 'final_interview', 'photo_dir'
+        'home_number', 'email', 'gender', 'initial_interview', 'exam_interview', 'final_interview', 'photo_dir',
+        'employee_id'
     ];
     //
+
+    public function employee()
+    {
+        return $this->belongsTo(Employee::class);
+    }
 
     public function getAge($dob)
     {
@@ -124,5 +130,19 @@ class Applicant extends Model
         ]);
 
         return redirect()->back()->with('msg', 'You have successfully updated "' . $applicant->fullName() . '" Information');
+    }
+
+    public static function hireApplicant($applicant)
+    {
+        $employee = new Employee();
+        // sss, pagibig
+        $employee->save();
+
+        $hireApplicant = Applicant::find($applicant->id);
+        $hireApplicant->employee_id = $employee->id;
+
+        $hireApplicant->save();
+
+        return redirect()->back()->with('msg', 'Applicant "' . $applicant->fullName() . '" is now an Employee');
     }
 }

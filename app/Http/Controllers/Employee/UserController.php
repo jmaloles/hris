@@ -1,18 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Employee;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Applicant;
-use App\Http\Requests\UpdateApplicantRequest;
+use App\Employee;
 
-class ApplicantController extends Controller
+class UserController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
     /**
      * Display a listing of the resource.
      *
@@ -50,9 +45,9 @@ class ApplicantController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Applicant $applicant)
+    public function show($id)
     {
-        return view('admin.applicant.show', compact('applicant'));
+        //
     }
 
     /**
@@ -61,9 +56,9 @@ class ApplicantController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Applicant $applicant)
+    public function edit($id)
     {
-        return view('admin.applicant.edit', compact('applicant'));
+        //
     }
 
     /**
@@ -73,11 +68,9 @@ class ApplicantController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateApplicantRequest $updateApplicantRequest, Applicant $applicant)
+    public function update(Request $request, $id)
     {
-        $updateApplicant = Applicant::updateApplicant($updateApplicantRequest, $applicant);
-
-        return $updateApplicant;
+        //
     }
 
     /**
@@ -89,12 +82,5 @@ class ApplicantController extends Controller
     public function destroy($id)
     {
         //
-    }
-
-    public function hireApplicant(Applicant $applicant)
-    {
-        $hire_applicant = Applicant::hireApplicant($applicant);
-
-        return $hire_applicant;
     }
 }
