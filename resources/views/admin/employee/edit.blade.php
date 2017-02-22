@@ -17,7 +17,7 @@
                         <div class="col-lg-12">
                             <div class="panel-1 panel-trans">
                                 <div class="panel-heading-1">
-                                    <h4><i class="fa fa-edit"></i>&nbsp;&nbsp;EDIT: {{ $employee->fullName() }}</h4>
+                                    <h4><i class="fa fa-edit"></i>&nbsp;&nbsp;EDIT: {{ $employee->applicant->fullName() }}</h4>
                                 </div>
                             </div>
                         </div>
@@ -61,17 +61,17 @@
                                 <div role="tabpanel" class="tab-pane fade in active" id="information">
                                     <div class="row">
                                         <div class="col-lg-12">
-                                            <form action="{{ route('admin_user_applicant_update', $employee->id) }}" class="form-horizontal" method="POST"  enctype="multipart/form-data">
+                                            <form action="{{ route('admin_user_employee_update', $employee->id) }}" class="form-horizontal" method="POST"  enctype="multipart/form-data">
                                                 {{ csrf_field() }}
                                                 {{ method_field('PATCH') }}
-                                                <input type="hidden" name="applicant_id" value="{{ $employee->id }}">
+                                                <input type="hidden" name="employee_id" value="{{ $employee->id }}">
 
                                                 <div class="col-lg-12">
                                                     <div class="col-lg-3">
                                                         <div class="form-group{{ $errors->has('fileToUpload') ? ' has-error' : '' }}">
                                                             <div class="col-md-3">
                                                                 <div class="thumbnail" style="width: 175px; height: 160px; border-radius: 0px;">
-                                                                    <img src="{{ URL::to('/') }}/{{ $employee->photo_dir }}" alt="..." id="output" style="width: 160px; height: 150px;">
+                                                                    <img src="{{ URL::to('/') }}/{{ $employee->applicant->photo_dir }}" alt="..." id="output" style="width: 160px; height: 150px;">
                                                                 </div>
 
                                                                 <input type="file" accept="image/*" onchange="loadFile(event)" name="fileToUpload">
@@ -84,166 +84,69 @@
                                                             </div>
                                                         </div>
                                                     </div>
+
                                                     <div class="col-lg-7">
-                                                        <div class="form-group{{ $errors->has('title') ? ' has-error' : '' }}">
-                                                            <label for="title" class="col-md-4 control-label">Title</label>
-
-                                                            <div class="col-md-6">
-                                                                <div class="radio-inline">
-                                                                    <label>
-                                                                        <input type="radio" name="title" id="title" value="MR." {{ $employee->title == "MR." ? "checked" : "" }}>
-                                                                        MR.
-                                                                    </label>
-                                                                </div>
-                                                                <div class="radio-inline">
-                                                                    <label>
-                                                                        <input type="radio" name="title" id="title" value="MRS." {{ $employee->title == "MRS." ? "checked" : "" }}>
-                                                                        MRS.
-                                                                    </label>
-                                                                </div>
-
-                                                                @if ($errors->has('title'))
-                                                                    <span class="help-block">
-                                                                        <strong>{{ $errors->first('title') }}</strong>
-                                                                    </span>
-                                                                @endif
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="form-group{{ $errors->has('first_name') ? ' has-error' : '' }}">
-                                                            <label for="firstName" class="col-md-4 control-label">First Name</label>
-                                                            <div class="col-md-6">
-                                                                <input style="text-transform: uppercase;" id="firstName" type="text" class="form-control" name="first_name" value="{{ $employee->first_name }}" required autofocus>
-
-                                                                @if ($errors->has('first_name'))
-                                                                    <span class="help-block">
-                                                                        <strong>{{ $errors->first('first_name') }}</strong>
-                                                                    </span>
-                                                                @endif
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="form-group{{ $errors->has('middle_initial') ? ' has-error' : '' }}">
-                                                            <label for="middleInitial" class="col-md-4 control-label">Middle Initial/Name</label>
-                                                            <div class="col-md-6">
-                                                                <input style="text-transform: uppercase;" id="middleInitial" type="text" class="form-control" name="middle_initial" value="{{ $employee->middle_initial }}" required autofocus>
-
-                                                                @if ($errors->has('middle_initial'))
-                                                                    <span class="help-block">
-                                                                        <strong>{{ $errors->first('middle_initial') }}</strong>
-                                                                    </span>
-                                                                @endif
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="form-group{{ $errors->has('last_name') ? ' has-error' : '' }}">
-                                                            <label for="last_name" class="col-md-4 control-label">Last Name</label>
-
-                                                            <div class="col-md-6">
-                                                                <input style="text-transform: uppercase;" id="last_name" type="text" class="form-control" name="last_name" value="{{ $employee->last_name }}" required>
-
-                                                                @if ($errors->has('last_name'))
-                                                                    <span class="help-block">
-                                                                        <strong>{{ $errors->first('last_name') }}</strong>
-                                                                    </span>
-                                                                @endif
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="form-group{{ $errors->has('address') ? ' has-error' : '' }}">
-                                                            <label for="address" class="col-md-4 control-label">Address</label>
-
-                                                            <div class="col-md-6">
-                                                                <textarea style="text-transform: uppercase;" id="address" type="text" class="form-control" name="address" required>{{ $employee->address }}</textarea>
-
-                                                                @if ($errors->has('address'))
-                                                                    <span class="help-block">
-                                                                        <strong>{{ $errors->first('address') }}</strong>
-                                                                    </span>
-                                                                @endif
-                                                            </div>
-                                                        </div>
-
                                                         <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                                                            <label for="email" class="col-md-4 control-label">E-mail</label>
+                                                            <label for="email" class="col-md-4 control-label">Company E-mail:</label>
 
                                                             <div class="col-md-6">
-                                                                <input id="email" type="text" class="form-control" name="email" value="{{ $employee->email }}" required>
-
-                                                                @if ($errors->has('email'))
-                                                                    <span class="help-block">
-                                                                        <strong>{{ $errors->first('email') }}</strong>
-                                                                    </span>
-                                                                @endif
+                                                                <input name="email" id="email" class="form-control" value="{{ $employee->email }}">
                                                             </div>
                                                         </div>
 
-                                                        <div class="form-group{{ $errors->has('date_of_birth') ? ' has-error' : '' }}">
-                                                            <label for="date_of_birth" class="col-md-4 control-label">Date of Birth</label>
+                                                        <div class="form-group{{ $errors->has('sss') ? ' has-error' : '' }}">
+                                                            <label for="SSS" class="col-md-4 control-label">SSS:</label>
 
                                                             <div class="col-md-6">
-                                                                <div class="input-group date">
-                                                                    <input style="text-transform: uppercase;" id="date_of_birth" type="text" class="form-control" name="date_of_birth" value="{{ $employee->date_of_birth }}" required>
-                                                                    <span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
-                                                                </div>
-                                                                @if ($errors->has('date_of_birth'))
-                                                                    <span class="help-block">
-                                                                        <strong>{{ $errors->first('date_of_birth') }}</strong>
-                                                                    </span>
-                                                                @endif
+                                                                <input name="sss" id="SSS" class="form-control" value="{{ $employee->applicant->sss }}">
                                                             </div>
                                                         </div>
 
-                                                        <div class="form-group{{ $errors->has('mobile_number') ? ' has-error' : '' }}">
-                                                            <label for="mobile_number" class="col-md-4 control-label">Mobile Number</label>
+                                                        <div class="form-group{{ $errors->has('salary') ? ' has-error' : '' }}">
+                                                            <label for="salary" class="col-md-4 control-label">Salary:</label>
 
                                                             <div class="col-md-6">
-                                                                <input style="text-transform: uppercase;" id="mobile_number" type="text" class="form-control" name="mobile_number" value="{{ $employee->mobile_number }}">
-
-                                                                @if ($errors->has('mobile_number'))
-                                                                    <span class="help-block">
-                                                                        <strong>{{ $errors->first('mobile_number') }}</strong>
-                                                                    </span>
-                                                                @endif
+                                                                <input id="salary" class="form-control" name="salary" value="{{ $employee->salary }}">
                                                             </div>
                                                         </div>
 
-                                                        <div class="form-group{{ $errors->has('home_number') ? ' has-error' : '' }}">
-                                                            <label for="home_number" class="col-md-4 control-label">Home Number</label>
+                                                        <div class="form-group{{ $errors->has('pag_ibig') ? ' has-error' : '' }}">
+                                                            <label for="pag_ibig" class="col-md-4 control-label">Pag-ibig:</label>
 
                                                             <div class="col-md-6">
-                                                                <input style="text-transform: uppercase;" id="home_number" type="text" class="form-control" name="home_number" value="{{ $employee->home_number }}">
-
-                                                                @if ($errors->has('home_number'))
-                                                                    <span class="help-block">
-                                                                        <strong>{{ $errors->first('home_number') }}</strong>
-                                                                    </span>
-                                                                @endif
+                                                                <input name="pag_ibig" id="pag_ibig" class="form-control" value="{{ $employee->pag_ibig }}">
                                                             </div>
                                                         </div>
 
-                                                        <div class="form-group{{ $errors->has('gender') ? ' has-error' : '' }}">
-                                                            <label for="gender" class="col-md-4 control-label">Gender</label>
+                                                        <div class="form-group{{ $errors->has('philhealth') ? ' has-error' : '' }}">
+                                                            <label for="philhealth" class="col-md-4 control-label">Phil Health:</label>
 
                                                             <div class="col-md-6">
-                                                                <div class="radio-inline">
-                                                                    <label>
-                                                                        <input type="radio" name="gender" id="gender" value="1" {{ $employee->gender == "1" ? "checked" : "" }}>
-                                                                        Male
-                                                                    </label>
-                                                                </div>
-                                                                <div class="radio-inline">
-                                                                    <label>
-                                                                        <input type="radio" name="gender" id="gender" value="0" {{ $employee->gender == "0" ? "checked" : "" }}>
-                                                                        Female
-                                                                    </label>
-                                                                </div>
+                                                                <input name="philhealth" id="philhealth" class="form-control" value="{{ $employee->philhealth }}">
+                                                            </div>
+                                                        </div>
 
-                                                                @if ($errors->has('gender'))
-                                                                    <span class="help-block">
-                                                                        <strong>{{ $errors->first('gender') }}</strong>
-                                                                    </span>
-                                                                @endif
+                                                        <div class="form-group{{ $errors->has('nbi_clearance') ? ' has-error' : '' }}">
+                                                            <label for="nbi_clearance" class="col-md-4 control-label">NBI Clearance:</label>
+
+                                                            <div class="col-md-6">
+                                                                <input name="nbi_clearance" id="nbi_clearance" class="form-control" value="{{ $employee->nbi_clearance }}">
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="form-group{{ $errors->has('tin') ? ' has-error' : '' }}">
+                                                            <label for="tin" class="col-md-4 control-label">Tax Identificatio Number(TIN):</label>
+
+                                                            <div class="col-md-6">
+                                                                <input name="tin" id="tin" class="form-control" value="{{ $employee->tin }}">
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="form-group{{ $errors->has('department') ? ' has-error' : '' }}">
+                                                            <label for="department" class="col-md-4 control-label">Department:</label>
+
+                                                            <div class="col-md-6">
+                                                                <input id="department" class="form-control" name="department" value="{{ $employee->department }}" style="text-transform: capitalize;">
                                                             </div>
                                                         </div>
                                                     </div>
@@ -274,25 +177,28 @@
             </div>
         </div>
     </div>
-    <input type="file" accept="image/*" onchange="loadFile(event)">
-    <img id="output"/>
-    <script>
-
-    </script>
     <script>
         $(document).ready(function() {
             $('.input-group.date').datepicker({
                 format: "yyyy-mm-dd"
             });
+
+            $("#salary").on("focusout", function (e) {
+                e.preventDefault();
+                var salary = document.getElementById("salary").value
+                string = numeral(salary).format('0,0.00');
+
+                document.getElementById("salary").value = string;
+            });
         })
 
-        var loadFile = function(event) {
+        /*var loadFile = function(event) {
             var reader = new FileReader();
             reader.onload = function() {
                 var output = document.getElementById('output');
                 output.src = reader.result;
             };
             reader.readAsDataURL(event.target.files[0]);
-        };
+        };*/
     </script>
 @endsection

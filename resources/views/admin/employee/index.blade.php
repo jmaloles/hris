@@ -46,10 +46,11 @@
                                             <div class="table-responsive">
                                                 <table class="table">
                                                     <thead style="background-color: #eeeeee; border: #ccc solid 1px;">
-                                                    <th><input type="checkbox"></th>
-                                                    <th>Employee ID</th>
-                                                    <th>Name</th>
-                                                    <th>E-mail</th>
+                                                        <th><input type="checkbox"></th>
+                                                        <th>Employee ID</th>
+                                                        <th>Name</th>
+                                                        <th>E-mail</th>
+                                                        <th></th>
                                                     </thead>
 
                                                     <tbody>
@@ -59,7 +60,7 @@
                                                             <td>{{ $employee->id }}</td>
                                                             <td>{{ $employee->applicant->fullName() }}</td>
                                                             <td>{{ $employee->applicant->email }}</td>
-                                                            <td><a href="#"><i class="fa fa-search"></i></a></td>
+                                                            <td><a href="{{ route('admin_user_employee_show', $employee->id) }}"><i class="fa fa-search"></i></a></td>
                                                         </tr>
                                                     @endforeach
                                                     </tbody>

@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Employee;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\VacationLeave;
 use App\Employee;
 
-class EmployeeController extends Controller
+class VacationLeaveController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -34,9 +35,11 @@ class EmployeeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Employee $employee)
     {
-        //
+        $adminFileVacationLeave = VacationLeave::adminFileVacationLeave($request, $employee);
+
+        return $adminFileVacationLeave;
     }
 
     /**
@@ -45,9 +48,9 @@ class EmployeeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Employee $employee)
+    public function show($id)
     {
-        return view('admin.employee.show', compact('employee'));
+        //
     }
 
     /**
@@ -56,9 +59,9 @@ class EmployeeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Employee $employee)
+    public function edit($id)
     {
-        return view('admin.employee.edit', compact('employee'));
+        //
     }
 
     /**
@@ -68,11 +71,9 @@ class EmployeeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Employee $employee)
+    public function update(Request $request, $id)
     {
-        $adminUpdateEmployeeInformation = Employee::adminUpdateEmployeeInformation($request, $employee);
-
-        return $adminUpdateEmployeeInformation;
+        //
     }
 
     /**
@@ -84,12 +85,5 @@ class EmployeeController extends Controller
     public function destroy($id)
     {
         //
-    }
-
-    public function adminEmployeeUpdateLeave(Request $request, Employee $employee)
-    {
-        $adminEmployeeUpdateLeave = Employee::adminUpdateEmployeeLeave($request, $employee);
-
-        return $adminEmployeeUpdateLeave;
     }
 }

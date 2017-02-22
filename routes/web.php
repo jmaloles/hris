@@ -37,7 +37,10 @@ Route::group(['prefix' => 'user'], function() {
     });
 
     Route::group(['prefix' => 'employee'], function() {
+        Route::get('/{employee}/profile', 'Admin\EmployeeController@show')->name('admin_user_employee_show');
         Route::get('/{employee}/edit', 'Admin\EmployeeController@edit')->name('admin_user_employee_edit');
-
+        Route::patch('/{employee}/update_leaves', 'Admin\EmployeeController@adminEmployeeUpdateLeave')->name('admin_user_employee_update_leaves');
+        Route::post('/{employee}/leave/vacation/submit', 'Employee\VacationLeaveController@store')->name('admin_user_employee_file_vacation_leaves');
+        Route::patch('/{employee}/information/update', 'Admin\EmployeeController@update')->name('admin_user_employee_update');
     });
 });

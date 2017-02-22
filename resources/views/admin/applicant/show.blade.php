@@ -18,7 +18,6 @@
                                 <ul class="dropdown-menu" role="menu" style="margin-top: 0.55rem; margin-right: -4rem;">
                                     <li><a href="javascript:void(0)" data-toggle="modal" data-target="#HireApplicantModal"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i>&nbsp;Hire Applicant</a></li>
                                     <li><a href="{{ route('admin_applicant_edit', $applicant->id) }}"><i class="fa fa-edit"></i>&nbsp;Edit Information</a></li>
-                                    <li><a href="javascript:void(0)" data-toggle="modal" data-target="#AddCommentModal"><i class="fa fa-pencil"></i>&nbsp;Add Comment</a></li>
                                     <li><a href="javascript:void(0)" data-toggle="modal" data-target="#UploadResumeModal"><i class="fa fa-upload"></i>&nbsp;Upload Resume</a></li>
                                     <li><a href="javascript:void(0)" data-toggle="modal" data-target="#AddCommentModal"><i class="fa fa-ban"></i>&nbsp;Cancel Application</a></li>
                                 </ul>
@@ -51,7 +50,6 @@
                                 <li role="presentation"><a href="#interview_status" aria-controls="interview_status" role="tab" data-toggle="tab">Interview Status</a></li>
                                 <li role="presentation"><a href="#job_information" aria-controls="job_information" role="tab" data-toggle="tab">Job Information</a></li>
                                 <li role="presentation"><a href="#other_details" aria-controls="other_details" role="tab" data-toggle="tab">Other Details</a></li>
-                                <li role="presentation"><a href="#other_details" aria-controls="other_details" role="tab" data-toggle="tab">Comments</a></li>
                             </ul>
 
                             <!-- Tab panes -->
@@ -252,11 +250,11 @@
                         <h4 class="modal-title">Are you sure you want to hire this Applicant?</h4>
                     </div>
                     <div class="modal-body">
-                        <p>One fine body&hellip;</p>
+                        <p>Are you sure you want to hire this Applicant?</p>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary"><i class="fa fa-thumbs-o-up"></i> Hire</button>
+                        <button type="submit" class="btn btn-success"><i class="fa fa-thumbs-o-up"></i> Hire</button>
                     </div>
                 </div><!-- /.modal-content -->
             </div><!-- /.modal-dialog -->

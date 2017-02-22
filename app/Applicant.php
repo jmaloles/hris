@@ -135,7 +135,6 @@ class Applicant extends Model
     public static function hireApplicant($applicant)
     {
         $employee = new Employee();
-        // sss, pagibig
         $employee->save();
 
         $hireApplicant = Applicant::find($applicant->id);
@@ -143,6 +142,6 @@ class Applicant extends Model
 
         $hireApplicant->save();
 
-        return redirect()->route('admin_user_employee_edit', $employee->id);
+        return redirect()->route('admin_user_employee_show', $employee->id);
     }
 }
