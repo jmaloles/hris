@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Employee;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\VacationLeave;
+use App\Employee;
 
 class VacationLeaveController extends Controller
 {
@@ -33,9 +35,11 @@ class VacationLeaveController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Employee $employee)
     {
-        //
+        $adminFileVacationLeave = VacationLeave::adminFileVacationLeave($request, $employee);
+
+        return $adminFileVacationLeave;
     }
 
     /**

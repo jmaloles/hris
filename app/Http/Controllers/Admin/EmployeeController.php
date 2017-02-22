@@ -45,9 +45,9 @@ class EmployeeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show()
+    public function show(Employee $employee)
     {
-
+        return view('admin.employee.show', compact('employee'));
     }
 
     /**
@@ -68,9 +68,11 @@ class EmployeeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Employee $employee)
     {
-        //
+        $adminUpdateEmployeeInformation = Employee::adminUpdateEmployeeInformation($request, $employee);
+
+        return $adminUpdateEmployeeInformation;
     }
 
     /**
@@ -82,5 +84,12 @@ class EmployeeController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function adminEmployeeUpdateLeave(Request $request, Employee $employee)
+    {
+        $adminEmployeeUpdateLeave = Employee::adminUpdateEmployeeLeave($request, $employee);
+
+        return $adminEmployeeUpdateLeave;
     }
 }
