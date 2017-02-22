@@ -33,5 +33,6 @@ Route::group(['prefix' => 'user'], function() {
         Route::get('/{applicant}', 'Admin\ApplicantController@show')->name('admin_user_applicant_show');
         Route::get('/{applicant}/edit', 'Admin\ApplicantController@edit')->name('admin_applicant_edit');
         Route::patch('/{applicant}/update', 'Admin\ApplicantController@update')->name('admin_user_applicant_update');
+        Route::patch('/{applicant}/hire', 'Admin\ApplicantController@hireApplicant')->name('admin_hire_applicant');
     });
 });

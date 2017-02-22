@@ -17,13 +17,13 @@
                         </div>
                     </div>
 
-                    <div class="row">
+                    {{--<div class="row">
                         <div class="col-lg-12">
                             <div class="pull-right">
                                 <a href="{{ route('admin_user_create') }}" class="btn btn-success"><i class="fa fa-user-plus"></i>&nbsp;&nbsp;Add</a>
                             </div>
                         </div>
-                    </div>
+                    </div>--}}
 
                     <br>
 
@@ -50,19 +50,15 @@
                                                     <th>Employee ID</th>
                                                     <th>Name</th>
                                                     <th>E-mail</th>
-                                                    <th>Role</th>
-                                                    <th>Date Added</th>
                                                     </thead>
 
                                                     <tbody>
-                                                    @foreach($users as $user)
+                                                    @foreach($employees as $employee)
                                                         <tr style="font-weight: bold;">
                                                             <td><input type="checkbox"></td>
-                                                            <td>{{ $user->employee_id }}</td>
-                                                            <td>{{ $user->name }}</td>
-                                                            <td>{{ $user->email }}</td>
-                                                            <td>{{ $user->role }}</td>
-                                                            <td>{{ date('m/d/Y', strtotime($user->created_at)) }}</td>
+                                                            <td>{{ $employee->id }}</td>
+                                                            <td>{{ $employee->applicant->fullName() }}</td>
+                                                            <td>{{ $employee->applicant->email }}</td>
                                                         </tr>
                                                     @endforeach
                                                     </tbody>

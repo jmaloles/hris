@@ -16,7 +16,7 @@
                                 </a>
 
                                 <ul class="dropdown-menu" role="menu" style="margin-top: 0.55rem; margin-right: -4rem;">
-                                    <li><a href="javascript:void(0)" data-toggle="modal" data-target="#AddCommentModal"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i>&nbsp;Hire Applicant</a></li>
+                                    <li><a href="javascript:void(0)" data-toggle="modal" data-target="#HireApplicantModal"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i>&nbsp;Hire Applicant</a></li>
                                     <li><a href="{{ route('admin_applicant_edit', $applicant->id) }}"><i class="fa fa-edit"></i>&nbsp;Edit Information</a></li>
                                     <li><a href="javascript:void(0)" data-toggle="modal" data-target="#AddCommentModal"><i class="fa fa-pencil"></i>&nbsp;Add Comment</a></li>
                                     <li><a href="javascript:void(0)" data-toggle="modal" data-target="#UploadResumeModal"><i class="fa fa-upload"></i>&nbsp;Upload Resume</a></li>
@@ -239,4 +239,27 @@
             </div>
         </div>
     </div>
+
+    <div class="modal fade" tabindex="-1" role="dialog" id="HireApplicantModal">
+        <form action="{{ route('admin_hire_applicant', $applicant->id) }}" method="POST">
+            {{ csrf_field() }}
+            {{ method_field('PATCH') }}
+
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title">Are you sure you want to hire this Applicant?</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>One fine body&hellip;</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary"><i class="fa fa-thumbs-o-up"></i> Hire</button>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </form>
+    </div><!-- /.modal -->
 @endsection
