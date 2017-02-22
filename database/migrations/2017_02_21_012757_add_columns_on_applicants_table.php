@@ -14,7 +14,11 @@ class AddColumnsOnApplicantsTable extends Migration
     public function up()
     {
         Schema::table('applicants', function (Blueprint $table) {
-            //
+            $table->string('title');
+            $table->string('description')->nullable();
+            $table->string('job_position');
+            $table->string('expected_salary');
+            $table->string('middle_initial')->after('last_name');
         });
     }
 
@@ -26,7 +30,11 @@ class AddColumnsOnApplicantsTable extends Migration
     public function down()
     {
         Schema::table('applicants', function (Blueprint $table) {
-            //
+            $table->dropColumn('title');
+            $table->dropColumn('description')->nullable();
+            $table->dropColumn('job_position');
+            $table->dropColumn('expected_salary');
+            $table->dropColumn('middle_initial')->after('last_name');
         });
     }
 }

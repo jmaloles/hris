@@ -10,6 +10,19 @@
                     <div class="row">
                         <div class="col-lg-12">
                             <a href="{{ route('admin_user_applicant_index') }}" class="btn btn-primary"><i class="fa fa-arrow-circle-left"></i> Back</a>
+                            <div class="dropdown pull-right" >
+                                <a class="btn btn-default-action dropdown-toggle" style="text-shadow: none !important;" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                    Actions <span class="caret"></span>
+                                </a>
+
+                                <ul class="dropdown-menu" role="menu" style="margin-top: 0.55rem; margin-right: -4rem;">
+                                    <li><a href="javascript:void(0)" data-toggle="modal" data-target="#AddCommentModal"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i>&nbsp;Hire Applicant</a></li>
+                                    <li><a href="{{ route('admin_applicant_edit', $applicant->id) }}"><i class="fa fa-edit"></i>&nbsp;Edit Information</a></li>
+                                    <li><a href="javascript:void(0)" data-toggle="modal" data-target="#AddCommentModal"><i class="fa fa-pencil"></i>&nbsp;Add Comment</a></li>
+                                    <li><a href="javascript:void(0)" data-toggle="modal" data-target="#UploadResumeModal"><i class="fa fa-upload"></i>&nbsp;Upload Resume</a></li>
+                                    <li><a href="javascript:void(0)" data-toggle="modal" data-target="#AddCommentModal"><i class="fa fa-ban"></i>&nbsp;Cancel Application</a></li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                     <br>
@@ -31,110 +44,116 @@
                             </div>
                         </div>
                     </div>--}}
-
-                    <br>
-
                     <div class="row">
                         <div class="col-lg-12">
                             <ul class="nav nav-tabs" role="tablist" style="background-color: white;">
-                                <li role="presentation" class="active">
-                                    <a href="#information" aria-controls="information" role="tab" data-toggle="tab">Information</a>
-                                </li>
-                                <li role="presentation">
-                                    <a href="#interview_status" aria-controls="interview_status" role="tab" data-toggle="tab">Interview Status</a>
-                                </li>
-                                <div class="dropdown pull-right" style="margin-top: 0.55rem; margin-right: 0.5rem;">
-                                    <button class="btn btn-default dropdown-toggle" style="text-shadow: none !important;" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                        Actions <span class="caret"></span>
-                                    </button>
-
-                                    <ul class="dropdown-menu" role="menu" style="margin-top: 0.55rem; margin-right: -4rem;">
-                                        <li>
-                                            <a href="{{ route('logout') }}"
-                                               onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                                Logout
-                                            </a>
-
-                                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                                {{ csrf_field() }}
-                                            </form>
-                                        </li>
-                                    </ul>
-                                </div>
+                                <li role="presentation" class="active"><a href="#information" aria-controls="information" role="tab" data-toggle="tab">Profile</a></li>
+                                <li role="presentation"><a href="#interview_status" aria-controls="interview_status" role="tab" data-toggle="tab">Interview Status</a></li>
+                                <li role="presentation"><a href="#job_information" aria-controls="job_information" role="tab" data-toggle="tab">Job Information</a></li>
+                                <li role="presentation"><a href="#other_details" aria-controls="other_details" role="tab" data-toggle="tab">Other Details</a></li>
+                                <li role="presentation"><a href="#other_details" aria-controls="other_details" role="tab" data-toggle="tab">Comments</a></li>
                             </ul>
 
                             <!-- Tab panes -->
                             <div class="tab-content" style="background-color: white;padding: 20px;border: #ddd solid 1px;">
                                 <div role="tabpanel" class="tab-pane fade in active" id="information">
                                     <div class="row">
-                                        <div class="col-lg-12">
-                                            <form class="form-horizontal">
-
-                                                <div class="form-group{{ $errors->has('first_name') ? ' has-error' : '' }}">
-                                                    <label for="first_name" class="col-md-4 control-label">First Name:</label>
-
-                                                    <div class="col-md-6">
-                                                        <label id="first_name" class="control-label">{{ $applicant->first_name }}</label>
+                                        <div class="col-lg-offset-1">
+                                            <div class="col-lg-3">
+                                                <form action="" class="form-horizontal">
+                                                    <div class="form-group">
+                                                        <div class="col-md-12">
+                                                            <div class="thumbnail" style="width: 175px; height: 160px; border-radius: 0px;">
+                                                                <img src="{{ URL::to('/') }}/{{ $applicant->photo_dir }}" alt="..." id="output" style="width: 160px; height: 150px;">
+                                                            </div>
+                                                        </div>
                                                     </div>
-                                                </div>
+                                                </form>
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <form class="form-horizontal">
 
-                                                <div class="form-group{{ $errors->has('last_name') ? ' has-error' : '' }}">
-                                                    <label for="last_name" class="col-md-4 control-label">Last Name:</label>
+                                                    <div class="form-group{{ $errors->has('title') ? ' has-error' : '' }}">
+                                                        <label for="title" class="col-md-4 control-label">Title:</label>
 
-                                                    <div class="col-md-6">
-                                                        <label id="last_name" class="control-label">{{ $applicant->last_name }}</label>
+                                                        <div class="col-md-6">
+                                                            <label id="title" class="control-label">{{ $applicant->title }}</label>
+                                                        </div>
                                                     </div>
-                                                </div>
 
-                                                <div class="form-group{{ $errors->has('date_of_birth') ? ' has-error' : '' }}">
-                                                    <label for="date_of_birth" class="col-md-4 control-label">Date of Birth:</label>
+                                                    <div class="form-group{{ $errors->has('first_name') ? ' has-error' : '' }}">
+                                                        <label for="first_name" class="col-md-4 control-label">First Name:</label>
 
-                                                    <div class="col-md-6">
-                                                        <label id="date_of_birth" class="control-label">{{ date('F d, Y', strtotime($applicant->date_of_birth)) }}</label>
+                                                        <div class="col-md-6">
+                                                            <label id="first_name" class="control-label">{{ $applicant->first_name }}</label>
+                                                        </div>
                                                     </div>
-                                                </div>
 
-                                                <div class="form-group">
-                                                    <label for="age" class="col-md-4 control-label">Age:</label>
+                                                    <div class="form-group{{ $errors->has('middle_initial') ? ' has-error' : '' }}">
+                                                        <label for="middle_initial" class="col-md-4 control-label">Middle Initial:</label>
 
-                                                    <div class="col-md-6">
-                                                        <label id="age" class="control-label" >{{ $applicant->age }}</label>
+                                                        <div class="col-md-6">
+                                                            <label id="middle_initial" class="control-label">{{ $applicant->middle_initial }}</label>
+                                                        </div>
                                                     </div>
-                                                </div>
 
-                                                <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                                                    <label for="email" class="col-md-4 control-label">E-mail:</label>
+                                                    <div class="form-group{{ $errors->has('last_name') ? ' has-error' : '' }}">
+                                                        <label for="last_name" class="col-md-4 control-label">Last Name:</label>
 
-                                                    <div class="col-md-6">
-                                                        <label id="email" class="control-label">{{ $applicant->email }}</label>
+                                                        <div class="col-md-6">
+                                                            <label id="last_name" class="control-label">{{ $applicant->last_name }}</label>
+                                                        </div>
                                                     </div>
-                                                </div>
 
-                                                <div class="form-group{{ $errors->has('mobile_number') ? ' has-error' : '' }}">
-                                                    <label for="mobile_number" class="col-md-4 control-label">Mobile Number:</label>
+                                                    <div class="form-group{{ $errors->has('date_of_birth') ? ' has-error' : '' }}">
+                                                        <label for="date_of_birth" class="col-md-4 control-label">Date of Birth:</label>
 
-                                                    <div class="col-md-6">
-                                                        <label id="mobile_number" class="control-label">{{ $applicant->mobile_number }}</label>
+                                                        <div class="col-md-6">
+                                                            <label id="date_of_birth" class="control-label">{{ date('F d, Y', strtotime($applicant->date_of_birth)) }}</label>
+                                                        </div>
                                                     </div>
-                                                </div>
 
-                                                <div class="form-group{{ $errors->has('home_number') ? ' has-error' : '' }}">
-                                                    <label for="home_number" class="col-md-4 control-label">Home Number:</label>
+                                                    <div class="form-group">
+                                                        <label for="age" class="col-md-4 control-label">Age:</label>
 
-                                                    <div class="col-md-6">
-                                                        <label id="home_number" class="control-label">{{ $applicant->home_number }}</label>
+                                                        <div class="col-md-6">
+                                                            <label id="age" class="control-label" >{{ $applicant->age }}</label>
+                                                        </div>
                                                     </div>
-                                                </div>
 
-                                                <div class="form-group{{ $errors->has('address') ? ' has-error' : '' }}">
-                                                    <label for="address" class="col-md-4 control-label">Address:</label>
+                                                    <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
+                                                        <label for="email" class="col-md-4 control-label">E-mail:</label>
 
-                                                    <div class="col-md-6">
-                                                        <label id="address" class="control-label">{{ $applicant->address }}</label>
+                                                        <div class="col-md-6">
+                                                            <label id="email" class="control-label">{{ $applicant->email }}</label>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                            </form>
+
+                                                    <div class="form-group{{ $errors->has('mobile_number') ? ' has-error' : '' }}">
+                                                        <label for="mobile_number" class="col-md-4 control-label">Mobile Number:</label>
+
+                                                        <div class="col-md-6">
+                                                            <label id="mobile_number" class="control-label">{{ $applicant->mobile_number }}</label>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group{{ $errors->has('home_number') ? ' has-error' : '' }}">
+                                                        <label for="home_number" class="col-md-4 control-label">Home Number:</label>
+
+                                                        <div class="col-md-6">
+                                                            <label id="home_number" class="control-label">{{ $applicant->home_number }}</label>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group{{ $errors->has('address') ? ' has-error' : '' }}">
+                                                        <label for="address" class="col-md-4 control-label">Address:</label>
+
+                                                        <div class="col-md-6">
+                                                            <label id="address" class="control-label">{{ $applicant->address }}</label>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -171,6 +190,47 @@
                                         </div>
                                     </div>
                                 </div>
+
+                                <div role="tabpanel" class="tab-pane fade in" id="other_details">
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <form class="form-horizontal">
+                                                <div class="form-group">
+                                                    <label for="InformationLastUpdate" class="col-md-4 control-label">Profile Last Update:</label>
+
+                                                    <div class="col-md-6">
+                                                        <label id="InformationLastUpdate" class="control-label">{{ date('F d, Y h:i A', strtotime($applicant->updated_at)) }}</label>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div role="tabpanel" class="tab-pane fade in" id="job_information">
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <form class="form-horizontal">
+                                                <div class="form-group">
+                                                    <label for="job_position" class="col-md-4 control-label">Expected Salary:</label>
+
+                                                    <div class="col-md-6">
+                                                        <label id="job_position" class="control-label">PHP {{ $applicant->expected_salary }}</label>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group">
+                                                    <label for="job_position" class="col-md-4 control-label">Job Position:</label>
+
+                                                    <div class="col-md-6">
+                                                        <label id="job_position" class="control-label">{{ $applicant->job_position }}</label>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+
                             </div>
                         </div>
                     </div>

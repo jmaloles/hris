@@ -296,12 +296,12 @@ li.nav-item > .nav-link {
 
 .nav > li > a:hover, .nav > li > a:focus {
     text-decoration: none;
-    background-color: #eee;
+    background-color: #f5f5f5;
 }
 
 .login-body {
     padding-bottom: 5rem !important;
-    padding-top: 15rem !important;
+    padding-top: 10rem !important;
 }
 
 .dropdown-menu:after, .dropdown-menu:before {
@@ -327,4 +327,56 @@ li.nav-item > .nav-link {
     border-bottom-color: #ccc;
     border-width: 7px;
     margin-left: -6px;
+}
+
+.nav .open > a, .nav .open > a:hover, .nav .open > a:focus {
+    background-color: #eee;
+    border-color: #337ab7;
+}
+
+.btn-default-action {
+    text-shadow: 0 1px 0 #fff;
+    background-image: -webkit-linear-gradient(top, #fff 0%, #e0e0e0 100%);
+    background-image: -o-linear-gradient(top, #fff 0%, #e0e0e0 100%);
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#e0e0e0));
+    background-image: linear-gradient(to bottom, #fff 0%, #e0e0e0 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffffff', endColorstr='#ffe0e0e0', GradientType=0);
+    filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
+    background-repeat: repeat-x;
+    border-color: #dbdbdb;
+    border-color: #ccc;
+}
+
+.btn-default-action {
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, .2);
+    -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, .15), 0 1px 1px rgba(0, 0, 0, .075);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, .15), 0 1px 1px rgba(0, 0, 0, .075);
+}
+
+.btn-default-action {
+    background-image: none;
+    border-radius: 0px;
+    outline: 0;
+}
+
+.btn-default-action:hover {
+    color: #333;
+    background-color: white;
+    border-color: #5bc0de;
+
+}
+
+.btn-default-action {
+    color: #333;
+    background-color: #fff !important;
+    border-color: #ccc;
+}
+
+.btn.btn-default-action:active, .btn.btn-default-action.active {
+    background-image: none;
+    outline: 0;
+     -webkit-box-shadow: inset 0 3px 5px rgba(91, 192, 222, .125);
+     box-shadow: inset 0 3px 5px rgba(91, 192, 222, .125);
+    background-color: #5bc0de;
+    border-color: #5bc0de;
 }

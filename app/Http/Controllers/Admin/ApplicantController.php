@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Applicant;
+use App\Http\Requests\UpdateApplicantRequest;
 
 class ApplicantController extends Controller
 {
@@ -60,9 +61,9 @@ class ApplicantController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Applicant $applicant)
     {
-        //
+        return view('admin.applicant.edit', compact('applicant'));
     }
 
     /**
@@ -72,9 +73,11 @@ class ApplicantController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateApplicantRequest $updateApplicantRequest, Applicant $applicant)
     {
-        //
+        $updateApplicant = Applicant::updateApplicant($updateApplicantRequest, $applicant);
+
+        return $updateApplicant;
     }
 
     /**

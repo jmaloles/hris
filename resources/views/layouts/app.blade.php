@@ -30,11 +30,12 @@
     <script src="{{ asset('bootstrap-3.3.7/js/bootstrap.js') }}"></script>
     <script src="{{ asset('bootstrap-datepicker-1.6.4/js/bootstrap-datepicker.min.js') }}"></script>
     <script src="{{ asset('momentjs/momentjs.js') }}"></script>
+    <script src="{{ asset('adamwdraper-numeral-js/src/numeral.js') }}"></script>
 </head>
 <body>
     <div id="app">
         @if(Request::route()->getName() != 'applicant/register')
-        <nav class="navbar navbar-default hris-navbar navbar-fixed-top">
+        <nav class="navbar navbar-default hris-navbar navbar-fixed-top" style="border-bottom-color: #2a958c">
             <div class="container">
                 <div class="navbar-header">
 

@@ -30,6 +30,8 @@ Route::group(['prefix' => 'user'], function() {
 
     Route::get('/applicants', 'ApplicantController@index')->name('admin_user_applicant_index');
     Route::group(['prefix' => 'applicant'], function() {
-        Route::get('/{applicant}', 'Admin\ApplicantController@show')->name('admin_view_applicant');
+        Route::get('/{applicant}', 'Admin\ApplicantController@show')->name('admin_user_applicant_show');
+        Route::get('/{applicant}/edit', 'Admin\ApplicantController@edit')->name('admin_applicant_edit');
+        Route::patch('/{applicant}/update', 'Admin\ApplicantController@update')->name('admin_user_applicant_update');
     });
 });

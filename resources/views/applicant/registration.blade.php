@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <nav class="navbar navbar-default hris-navbar navbar-fixed-top">
+    <nav class="navbar navbar-default hris-navbar navbar-fixed-top" style="border-bottom-color: #2a958c">
         <div class="container">
             <div class="navbar-header">
 
@@ -64,6 +64,77 @@
                                 </div>
                             @endif
 
+                            <div class="form-group{{ $errors->has('expected_salary') ? ' has-error' : '' }}">
+                                <label for="expectedSalary" class="col-md-4 control-label">Expected Salary</label>
+                                <div class="col-md-6">
+                                    <div class="input-group">
+                                        <div class="input-group-addon">PHP</div>
+                                        <input style="text-transform: uppercase;" id="expectedSalary" type="text" class="form-control" name="expected_salary" value="{{ old('expected_salary') }}" required autofocus>
+                                        <div class="input-group-addon">.00</div>
+                                        @if ($errors->has('expected_salary'))
+                                        <span class="help-block">
+                                            <strong>{{ $errors->first('expected_salary') }}</strong>
+                                        </span>
+                                        @endif
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group{{ $errors->has('job_position') ? ' has-error' : '' }}">
+                                <label for="jobPosition" class="col-md-4 control-label">Applying for Job Position</label>
+                                <div class="col-md-6">
+                                    <input style="text-transform: uppercase;" id="jobPosition" type="text" class="form-control" name="job_position" value="{{ old('job_position') }}" required autofocus>
+
+                                    @if ($errors->has('job_position'))
+                                        <span class="help-block">
+                                        <strong>{{ $errors->first('job_position') }}</strong>
+                                    </span>
+                                    @endif
+                                </div>
+                            </div>
+
+                            <div class="form-group{{ $errors->has('type_of_employment') ? ' has-error' : '' }}">
+                                <label for="firstName" class="col-md-4 control-label">Type of Employment</label>
+                                <div class="col-md-6">
+                                    <input style="text-transform: uppercase;" id="firstName" type="text" class="form-control" name="type_of_employment" value="{{ old('type_of_employment') }}" required autofocus>
+
+                                    @if ($errors->has('type_of_employment'))
+                                        <span class="help-block">
+                                        <strong>{{ $errors->first('type_of_employment') }}</strong>
+                                    </span>
+                                    @endif
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <hr>
+                            </div>
+
+                            <div class="form-group{{ $errors->has('title') ? ' has-error' : '' }}">
+                                <label for="title" class="col-md-4 control-label">Title</label>
+
+                                <div class="col-md-6">
+                                    <div class="radio-inline">
+                                        <label>
+                                            <input type="radio" name="title" id="title" value="MR.">
+                                            MR.
+                                        </label>
+                                    </div>
+                                    <div class="radio-inline">
+                                        <label>
+                                            <input type="radio" name="title" id="title" value="MRS.">
+                                            MRS.
+                                        </label>
+                                    </div>
+
+                                    @if ($errors->has('title'))
+                                        <span class="help-block">
+                                        <strong>{{ $errors->first('title') }}</strong>
+                                    </span>
+                                    @endif
+                                </div>
+                            </div>
+
                             <div class="form-group{{ $errors->has('first_name') ? ' has-error' : '' }}">
                                 <label for="firstName" class="col-md-4 control-label">First Name</label>
                                 <div class="col-md-6">
@@ -72,6 +143,19 @@
                                     @if ($errors->has('first_name'))
                                         <span class="help-block">
                                         <strong>{{ $errors->first('first_name') }}</strong>
+                                    </span>
+                                    @endif
+                                </div>
+                            </div>
+
+                            <div class="form-group{{ $errors->has('middle_initial') ? ' has-error' : '' }}">
+                                <label for="middleInitial" class="col-md-4 control-label">Middle Initial/Name</label>
+                                <div class="col-md-6">
+                                    <input style="text-transform: uppercase;" id="middleInitial" type="text" class="form-control" name="middle_initial" value="{{ old('middle_initial') }}" required autofocus>
+
+                                    @if ($errors->has('middle_initial'))
+                                        <span class="help-block">
+                                        <strong>{{ $errors->first('middle_initial') }}</strong>
                                     </span>
                                     @endif
                                 </div>
@@ -212,8 +296,18 @@
     </div>
 
     <script>
-        $('.input-group.date').datepicker({
-            format: "yyyy-mm-dd"
+        $(document).ready(function () {
+            $("#expectedSalary").on("focusout", function (e) {
+                e.preventDefault();
+                var expectedSalary = document.getElementById("expectedSalary").value
+                string = numeral(expectedSalary).format('0,0.00');
+
+                document.getElementById("expectedSalary").value = string;
+            });
+
+            $('.input-group.date').datepicker({
+                format: "yyyy-mm-dd"
+            });
         });
     </script>
 @endsection
