@@ -95,7 +95,7 @@ class Applicant extends Model
         $applicant->expected_salary = strtoupper($createApplicantRequest->get('expected_salary'));
         $applicant->photo_dir = $imageType;
         $applicant->type_of_employment = strtoupper($createApplicantRequest->get('type_of_employment'));
-
+        $applicant->employee_id = 0;
         $applicant->save();
 
         return redirect()->back()->with('msg', 'Applicant ' . $applicant->fullName() . ' was successfully saved to Applicant List.');
@@ -143,6 +143,6 @@ class Applicant extends Model
 
         $hireApplicant->save();
 
-        return redirect()->back()->with('msg', 'Applicant "' . $applicant->fullName() . '" is now an Employee');
+        return redirect()->route('admin_user_employee_edit', $employee->id);
     }
 }

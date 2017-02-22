@@ -59,6 +59,7 @@
                                                             <td>{{ $employee->id }}</td>
                                                             <td>{{ $employee->applicant->fullName() }}</td>
                                                             <td>{{ $employee->applicant->email }}</td>
+                                                            <td><a href="#"><i class="fa fa-search"></i></a></td>
                                                         </tr>
                                                     @endforeach
                                                     </tbody>
