@@ -32,6 +32,6 @@ class CreatePendingUsersTable extends Migration
      */
     public function down()
     {
-        Schema::drop('pending_users');
+        Schema::dropIfExists('pending_users');
     }
 }

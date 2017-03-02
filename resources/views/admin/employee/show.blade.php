@@ -17,15 +17,18 @@
 
                                 <ul class="dropdown-menu" role="menu" style="margin-top: 0.55rem; margin-right: -4rem;">
                                     <li><a href="{{ route('admin_user_employee_edit', $employee->id) }}"><i class="fa fa-edit"></i>&nbsp;Edit Information</a></li>
-                                    <li><a href="javascript:void(0)" data-toggle="modal" data-target="#ChangeLeaveRemainingModal"><i class="fa fa-pencil-square" aria-hidden="true"></i>&nbsp;Change Leave Remaining</a></li>
-                                    <li><a href="javascript:void(0)" data-toggle="modal" data-target="#FileVacationLeaveModal"><i class="fa fa-plane" aria-hidden="true"></i>&nbsp;File Vacation Leave</a></li>
-                                    {{--<li><a href="javascript:void(0)" data-toggle="modal" data-target="#UploadResumeModal"><i class="fa fa-stethoscope" aria-hidden="true"></i>&nbsp;File Sick Leave</a></li>
-                                    <li><a href="javascript:void(0)" data-toggle="modal" data-target="#UploadResumeModal"><i class="fa fa-bolt" aria-hidden="true"></i>&nbsp;Emergency Leave</a></li>--}}
+                                    <li><a style="cursor: pointer;" data-toggle="modal" data-target="#ChangeLeaveRemainingModal"><i class="fa fa-pencil-square" aria-hidden="true"></i>&nbsp;Update Leaves</a></li>
+                                    <li><a style="cursor: pointer;" data-toggle="modal" data-target="#FileVacationLeaveModal"><i class="fa fa-plane" aria-hidden="true"></i>&nbsp;File Vacation Leave</a></li>
+                                    <li><a href="javascript:void(0)" data-toggle="modal" data-target="#UploadResumeModal"><i class="fa fa-stethoscope" aria-hidden="true"></i>&nbsp;File Sick Leave</a></li>
+                                    <li><a style="cursor: pointer;" data-toggle="modal" data-target="#UploadResumeModal"><i class="fa fa-bolt" aria-hidden="true"></i>&nbsp;Emergency Leave</a></li>
                                 </ul>
+
                             </div>
                         </div>
                     </div>
+
                     <br>
+
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="panel-1 panel-trans">
@@ -52,6 +55,7 @@
                             </div>
                         </div>
                     </div>--}}
+
                     <div class="row">
                         <div class="col-lg-12">
                             <ul class="nav nav-tabs" role="tablist" style="background-color: white;">
@@ -101,7 +105,7 @@
                                                         <label for="salary" class="col-md-4 control-label">Salary:</label>
 
                                                         <div class="col-md-6">
-                                                            <label id="salary" class="control-label">{{ $employee->salary }}</label>
+                                                            <label id="salary" class="control-label">PHP {{ $employee->salary }}</label>
                                                         </div>
                                                     </div>
 
@@ -169,14 +173,6 @@
 
                                             <div class="col-lg-6">
                                                 <form class="form-horizontal">
-
-                                                    <div class="form-group{{ $errors->has('title') ? ' has-error' : '' }}">
-                                                        <label for="title" class="col-md-4 control-label">Title:</label>
-
-                                                        <div class="col-md-6">
-                                                            <label id="title" class="control-label">{{ $employee->applicant->title }}</label>
-                                                        </div>
-                                                    </div>
 
                                                     <div class="form-group{{ $errors->has('first_name') ? ' has-error' : '' }}">
                                                         <label for="first_name" class="col-md-4 control-label">First Name:</label>
@@ -300,6 +296,14 @@
                                                         <label id="InformationLastUpdate" class="control-label">{{ date('F d, Y h:i A', strtotime($employee->applicant->updated_at)) }}</label>
                                                     </div>
                                                 </div>
+
+                                                <div class="form-group">
+                                                    <label for="InformationLastUpdate" class="col-md-4 control-label">Date Accepted as Employee:</label>
+
+                                                    <div class="col-md-6">
+                                                        <label id="InformationLastUpdate" class="control-label">{{ date('F d, Y h:i A', strtotime($employee->created_at)) }}</label>
+                                                    </div>
+                                                </div>
                                             </form>
                                         </div>
                                     </div>
@@ -390,7 +394,7 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title">Change Remaining Leaves</h4>
+                        <h4 class="modal-title">File Vacation Leave</h4>
                     </div>
 
                     <div class="modal-body">

@@ -33,6 +33,6 @@ class CreateVacationLeavesTable extends Migration
      */
     public function down()
     {
-        Schema::drop('vacation_leaves');
+        Schema::dropIfExists('vacation_leaves');
     }
 }

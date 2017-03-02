@@ -71,14 +71,6 @@
                                             <div class="col-lg-6">
                                                 <form class="form-horizontal">
 
-                                                    <div class="form-group{{ $errors->has('title') ? ' has-error' : '' }}">
-                                                        <label for="title" class="col-md-4 control-label">Title:</label>
-
-                                                        <div class="col-md-6">
-                                                            <label id="title" class="control-label">{{ $applicant->title }}</label>
-                                                        </div>
-                                                    </div>
-
                                                     <div class="form-group{{ $errors->has('first_name') ? ' has-error' : '' }}">
                                                         <label for="first_name" class="col-md-4 control-label">First Name:</label>
 

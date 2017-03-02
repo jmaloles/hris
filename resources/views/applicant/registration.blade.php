@@ -110,31 +110,6 @@
                                 <hr>
                             </div>
 
-                            <div class="form-group{{ $errors->has('title') ? ' has-error' : '' }}">
-                                <label for="title" class="col-md-4 control-label">Title</label>
-
-                                <div class="col-md-6">
-                                    <div class="radio-inline">
-                                        <label>
-                                            <input type="radio" name="title" id="title" value="MR.">
-                                            MR.
-                                        </label>
-                                    </div>
-                                    <div class="radio-inline">
-                                        <label>
-                                            <input type="radio" name="title" id="title" value="MRS.">
-                                            MRS.
-                                        </label>
-                                    </div>
-
-                                    @if ($errors->has('title'))
-                                        <span class="help-block">
-                                        <strong>{{ $errors->first('title') }}</strong>
-                                    </span>
-                                    @endif
-                                </div>
-                            </div>
-
                             <div class="form-group{{ $errors->has('first_name') ? ' has-error' : '' }}">
                                 <label for="firstName" class="col-md-4 control-label">First Name</label>
                                 <div class="col-md-6">

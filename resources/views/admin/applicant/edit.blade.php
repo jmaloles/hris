@@ -74,7 +74,7 @@
                                                                     <img src="{{ URL::to('/') }}/{{ $applicant->photo_dir }}" alt="..." id="output" style="width: 160px; height: 150px;">
                                                                 </div>
 
-                                                                <input type="file" accept="image/*" onchange="loadFile(event)" name="fileToUpload">
+                                                                <input type="file" accept="image/.jpg, .png, .jpeg" onchange="loadFile(event)" name="fileToUpload">
 
                                                                 @if ($errors->has('fileToUpload'))
                                                                     <span class="help-block">
@@ -84,31 +84,8 @@
                                                             </div>
                                                         </div>
                                                     </div>
+
                                                     <div class="col-lg-7">
-                                                        <div class="form-group{{ $errors->has('title') ? ' has-error' : '' }}">
-                                                            <label for="title" class="col-md-4 control-label">Title</label>
-
-                                                            <div class="col-md-6">
-                                                                <div class="radio-inline">
-                                                                    <label>
-                                                                        <input type="radio" name="title" id="title" value="MR." {{ $applicant->title == "MR." ? "checked" : "" }}>
-                                                                        MR.
-                                                                    </label>
-                                                                </div>
-                                                                <div class="radio-inline">
-                                                                    <label>
-                                                                        <input type="radio" name="title" id="title" value="MRS." {{ $applicant->title == "MRS." ? "checked" : "" }}>
-                                                                        MRS.
-                                                                    </label>
-                                                                </div>
-
-                                                                @if ($errors->has('title'))
-                                                                    <span class="help-block">
-                                                                        <strong>{{ $errors->first('title') }}</strong>
-                                                                    </span>
-                                                                @endif
-                                                            </div>
-                                                        </div>
 
                                                         <div class="form-group{{ $errors->has('first_name') ? ' has-error' : '' }}">
                                                             <label for="firstName" class="col-md-4 control-label">First Name</label>
@@ -274,11 +251,7 @@
             </div>
         </div>
     </div>
-    <input type="file" accept="image/*" onchange="loadFile(event)">
-    <img id="output"/>
-    <script>
 
-    </script>
     <script>
         $(document).ready(function() {
             $('.input-group.date').datepicker({

@@ -33,7 +33,6 @@ class UpdateApplicantRequest extends FormRequest
             'mobile_number' => array('required_if:home_number,""', 'regex:/(\+63|0)9+[0-9]{9}/i', 'nullable'),
             'home_number' => array('required_if:mobile_number,""', 'digits:7', 'nullable'),
             'gender' => 'required',
-            'title' => 'required',
             'fileToUpload' => 'mimes:jpeg,png,jpg|nullable',
         ];
     }

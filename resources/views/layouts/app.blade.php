@@ -31,6 +31,7 @@
     <script src="{{ asset('bootstrap-datepicker-1.6.4/js/bootstrap-datepicker.min.js') }}"></script>
     <script src="{{ asset('momentjs/momentjs.js') }}"></script>
     <script src="{{ asset('adamwdraper-numeral-js/src/numeral.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('bower_components/jquery.maskedinput/src/jquery.maskedinput.js') }}"></script>
 </head>
 <body>
     <div id="app">
@@ -66,25 +67,22 @@
                             <li><a href="{{ route('login') }}">Login</a></li>
                             <li><a href="{{ route('register') }}">Register</a></li>
                         @else
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                    {{ ucwords(strtolower(Auth::user()->name),' ') }} <span class="caret"></span>
+                            <p class="navbar-text" style="color: white; margin-top: 13.2px; margin-right: 20px">Signed in as :: {{ ucwords(strtolower(Auth::user()->name),' ') }}</p>
+
+                            <li><div class="navbar-divider"></div></li>
+
+                            <li class="logout">
+                                <a class="navbar-link" style="font-size: 14px;" href="{{ route('logout') }}"
+                                    onclick="event.preventDefault();
+                                             document.getElementById('logout-form').submit();">
+                                    Logout
                                 </a>
 
-                                <ul class="dropdown-menu" role="menu">
-                                    <li>
-                                        <a href="{{ route('logout') }}"
-                                            onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                            Logout
-                                        </a>
-
-                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                            {{ csrf_field() }}
-                                        </form>
-                                    </li>
-                                </ul>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                    {{ csrf_field() }}
+                                </form>
                             </li>
+
                         @endif
                     </ul>
                 </div>

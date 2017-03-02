@@ -25,8 +25,6 @@
                         </div>
                     </div>--}}
 
-                    <br>
-
                     <div class="row">
                         <div class="col-lg-12">
                             <ul class="nav nav-tabs" role="tablist" style="background-color: white;">
@@ -47,8 +45,10 @@
                                                 <table class="table">
                                                     <thead style="background-color: #eeeeee; border: #ccc solid 1px;">
                                                         <th><input type="checkbox"></th>
-                                                        <th>Employee ID</th>
-                                                        <th>Name</th>
+                                                        <th>Employee ID#</th>
+                                                        <th>First Name</th>
+                                                        <th>Middle Name/Initial</th>
+                                                        <th>Last Name</th>
                                                         <th>E-mail</th>
                                                         <th></th>
                                                     </thead>
@@ -58,7 +58,9 @@
                                                         <tr style="font-weight: bold;">
                                                             <td><input type="checkbox"></td>
                                                             <td>{{ $employee->id }}</td>
-                                                            <td>{{ $employee->applicant->fullName() }}</td>
+                                                            <td>{{ $employee->applicant->first_name }}</td>
+                                                            <td>{{ $employee->applicant->middle_initial }}</td>
+                                                            <td>{{ $employee->applicant->last_name }}</td>
                                                             <td>{{ $employee->applicant->email }}</td>
                                                             <td><a href="{{ route('admin_user_employee_show', $employee->id) }}"><i class="fa fa-search"></i></a></td>
                                                         </tr>
