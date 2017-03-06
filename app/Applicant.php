@@ -122,8 +122,6 @@ class Applicant extends Model
             'mobile_number'     => $updateApplicantRequest->get('mobile_number'),
             'home_number'       => $updateApplicantRequest->get('home_number'),
             'gender'            => $updateApplicantRequest->get('gender'),
-            // 'expected_salary' => str_replace(',', '', $updateApplicantRequest->get('expected_salary')),
-            // 'job_position' => strtoupper($updateApplicantRequest->get('job_position'))
             'photo_dir'         => $applicantPhotoLocation
         ]);
 

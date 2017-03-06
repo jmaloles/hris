@@ -26,33 +26,33 @@
     </script>
 
     <!-- Scripts -->
-    <script src="{{ asset('bootstrap-3.3.7/js/jquery.min.js') }}"></script>
-    <script src="{{ asset('bootstrap-3.3.7/js/bootstrap.js') }}"></script>
-    <script src="{{ asset('bootstrap-datepicker-1.6.4/js/bootstrap-datepicker.min.js') }}"></script>
-    <script src="{{ asset('momentjs/momentjs.js') }}"></script>
-    <script src="{{ asset('adamwdraper-numeral-js/src/numeral.js') }}"></script>
-    <script type="text/javascript" src="{{ asset('bower_components/jquery.maskedinput/src/jquery.maskedinput.js') }}"></script>
+   <script src="{{ asset('bootstrap-3.3.7/js/jquery.min.js') }}"></script>
+   <script src="{{ asset('bootstrap-3.3.7/js/bootstrap.js') }}"></script>
+   <script src="{{ asset('bootstrap-datepicker-1.6.4/js/bootstrap-datepicker.min.js') }}"></script>
+   <script src="{{ asset('momentjs/momentjs.js') }}"></script>
+   <script src="{{ asset('adamwdraper-numeral-js/src/numeral.js') }}"></script>
+   <script type="text/javascript" src="{{ asset('bower_components/jquery.maskedinput/src/jquery.maskedinput.js') }}"></script>
 </head>
 <body>
-    <div id="app">
-        @if(Request::route()->getName() != 'applicant/register')
-        <nav class="navbar navbar-default hris-navbar navbar-fixed-top" style="border-bottom-color: #2a958c">
-            <div class="container">
-                <div class="navbar-header">
+   <div id="app">
+      @if(Request::route()->getName() != 'applicant/register')
+      <nav class="navbar navbar-default hris-navbar navbar-fixed-top" style="border-bottom-color: #2a958c">
+         <div class="container">
+            <div class="navbar-header">
 
                     <!-- Collapsed Hamburger -->
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse">
-                        <span class="sr-only">Toggle Navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
+               <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse">
+                  <span class="sr-only">Toggle Navigation</span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+               </button>
 
-                    <!-- Branding Image -->
-                    <a class="navbar-brand hris-title" href="{{ url('/') }}">
-                        {{ config('app.name', 'Laravel') }}
-                    </a>
-                </div>
+               <!-- Branding Image -->
+               <a class="navbar-brand hris-title" href="{{ url('/') }}">
+                  {{ config('app.name', 'Laravel') }}
+               </a>
+            </div>
 
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
                     <!-- Left Side Of Navbar -->
