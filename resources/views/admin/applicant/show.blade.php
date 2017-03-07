@@ -44,7 +44,18 @@
                         </div>
                     </div>--}}
                     <div class="row">
-                        <div class="col-lg-12">
+                       <div class="col-lg-3">
+                           <form action="" class="form-horizontal">
+                              <div class="form-group">
+                                   <div class="col-md-8">
+                                       <div class="thumbnail" style="border-radius: 0px;">
+                                           <img src="{{ URL::to('/') }}/{{ $applicant->photo_dir }}" alt="..." id="output" style="width: 160px; height: 150px;">
+                                       </div>
+                                   </div>
+                              </div>
+                           </form>
+                       </div>
+                        <div class="col-lg-9">
                             <ul class="nav nav-tabs" role="tablist" style="background-color: white;">
                                 <li role="presentation" class="active"><a href="#information" aria-controls="information" role="tab" data-toggle="tab">Profile</a></li>
                                 <li role="presentation"><a href="#interview_status" aria-controls="interview_status" role="tab" data-toggle="tab">Interview Status</a></li>
@@ -57,91 +68,82 @@
                                 <div role="tabpanel" class="tab-pane fade in active" id="information">
                                     <div class="row">
                                         <div class="col-lg-offset-1">
-                                            <div class="col-lg-3">
-                                                <form action="" class="form-horizontal">
-                                                    <div class="form-group">
-                                                        <div class="col-md-12">
-                                                            <div class="thumbnail" style="width: 175px; height: 160px; border-radius: 0px;">
-                                                                <img src="{{ URL::to('/') }}/{{ $applicant->photo_dir }}" alt="..." id="output" style="width: 160px; height: 150px;">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </form>
-                                            </div>
+
                                             <div class="col-lg-6">
                                                 <form class="form-horizontal">
 
                                                     <div class="form-group{{ $errors->has('first_name') ? ' has-error' : '' }}">
-                                                        <label for="first_name" class="col-md-4 control-label">First Name:</label>
+                                                        <label for="first_name" class="col-md-5 control-label">First Name:</label>
 
-                                                        <div class="col-md-6">
-                                                            <label id="first_name" class="control-label">{{ $applicant->first_name }}</label>
+                                                        <div class="col-md-7">
+                                                            <input style="width: 400px; resize: none;" id="first_name" class="form-control" value="{{ $applicant->first_name }}" disabled>
                                                         </div>
                                                     </div>
 
                                                     <div class="form-group{{ $errors->has('middle_initial') ? ' has-error' : '' }}">
-                                                        <label for="middle_initial" class="col-md-4 control-label">Middle Initial:</label>
+                                                        <label for="middle_initial" class="col-md-5 control-label">Middle Initial:</label>
 
-                                                        <div class="col-md-6">
-                                                            <label id="middle_initial" class="control-label">{{ $applicant->middle_initial }}</label>
+                                                        <div class="col-md-7">
+                                                            <input style="width: 400px; resize: none;" id="middle_initial" class="form-control" value="{{ $applicant->middle_initial }}" disabled>
                                                         </div>
                                                     </div>
 
                                                     <div class="form-group{{ $errors->has('last_name') ? ' has-error' : '' }}">
-                                                        <label for="last_name" class="col-md-4 control-label">Last Name:</label>
+                                                        <label for="last_name" class="col-md-5 control-label">Last Name:</label>
 
-                                                        <div class="col-md-6">
-                                                            <label id="last_name" class="control-label">{{ $applicant->last_name }}</label>
+                                                        <div class="col-md-7">
+                                                            <input style="width: 400px; resize: none;" id="last_name" class="form-control" value="{{ $applicant->last_name }}" disabled>
                                                         </div>
                                                     </div>
 
                                                     <div class="form-group{{ $errors->has('date_of_birth') ? ' has-error' : '' }}">
-                                                        <label for="date_of_birth" class="col-md-4 control-label">Date of Birth:</label>
+                                                        <label for="date_of_birth" class="col-md-5 control-label">Date of Birth:</label>
 
-                                                        <div class="col-md-6">
-                                                            <label id="date_of_birth" class="control-label">{{ date('F d, Y', strtotime($applicant->date_of_birth)) }}</label>
+                                                        <div class="col-md-7">
+                                                            <input style="width: 400px; resize: none;" id="date_of_birth" class="form-control" value="{{ date('F d, Y', strtotime($applicant->date_of_birth)) }}" disabled>
                                                         </div>
                                                     </div>
 
                                                     <div class="form-group">
-                                                        <label for="age" class="col-md-4 control-label">Age:</label>
+                                                        <label for="age" class="col-md-5 control-label">Age:</label>
 
-                                                        <div class="col-md-6">
-                                                            <label id="age" class="control-label" >{{ $applicant->age }}</label>
+                                                        <div class="col-md-7">
+                                                            <input style="width: 400px; resize: none;" id="age" class="form-control" value="{{ $applicant->age }}" disabled>
                                                         </div>
                                                     </div>
 
                                                     <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                                                        <label for="email" class="col-md-4 control-label">E-mail:</label>
+                                                        <label for="email" class="col-md-5 control-label">E-mail:</label>
 
-                                                        <div class="col-md-6">
-                                                            <label id="email" class="control-label">{{ $applicant->email }}</label>
+                                                        <div class="col-md-7">
+                                                            <input style="width: 400px; resize: none;" id="email" class="form-control" value="{{ $applicant->email }}" disabled>
                                                         </div>
                                                     </div>
 
                                                     <div class="form-group{{ $errors->has('mobile_number') ? ' has-error' : '' }}">
-                                                        <label for="mobile_number" class="col-md-4 control-label">Mobile Number:</label>
+                                                        <label for="mobile_number" class="col-md-5 control-label">Mobile Number:</label>
 
-                                                        <div class="col-md-6">
-                                                            <label id="mobile_number" class="control-label">{{ $applicant->mobile_number }}</label>
+                                                        <div class="col-md-7">
+                                                            <input style="width: 400px; resize: none;" id="mobile_number" class="form-control" value="{{ $applicant->mobile_number }}" disabled>
                                                         </div>
                                                     </div>
 
                                                     <div class="form-group{{ $errors->has('home_number') ? ' has-error' : '' }}">
-                                                        <label for="home_number" class="col-md-4 control-label">Home Number:</label>
+                                                        <label for="home_number" class="col-md-5 control-label">Home Number:</label>
 
-                                                        <div class="col-md-6">
-                                                            <label id="home_number" class="control-label">{{ $applicant->home_number }}</label>
+                                                        <div class="col-md-7">
+                                                            <input style="width: 400px; resize: none;" id="home_number" class="form-control" value="{{ $applicant->home_number }}" disabled>
                                                         </div>
                                                     </div>
 
                                                     <div class="form-group{{ $errors->has('address') ? ' has-error' : '' }}">
-                                                        <label for="address" class="col-md-4 control-label">Address:</label>
+                                                        <label for="address" class="col-md-5 control-label">Address:</label>
 
-                                                        <div class="col-md-6">
-                                                            <label id="address" class="control-label">{{ $applicant->address }}</label>
+                                                        <div class="col-md-7">
+                                                            <textarea id="address" class="form-control" style="width: 400px; resize: none;" disabled>{{ $applicant->address }}</textarea>
                                                         </div>
                                                     </div>
+
                                                 </form>
                                             </div>
                                         </div>
@@ -189,7 +191,7 @@
                                                     <label for="InformationLastUpdate" class="col-md-4 control-label">Profile Last Update:</label>
 
                                                     <div class="col-md-6">
-                                                        <label id="InformationLastUpdate" class="control-label">{{ date('F d, Y h:i A', strtotime($applicant->updated_at)) }}</label>
+                                                        <input id="InformationLastUpdate" class="control-label">{{ date('F d, Y h:i A', strtotime($applicant->updated_at)) }}</label>
                                                     </div>
                                                 </div>
                                             </form>

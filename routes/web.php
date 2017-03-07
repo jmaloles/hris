@@ -15,8 +15,6 @@ Route::get('/', function () {
     return view('welcome');
 })->name('welcome');
 
-
-
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('dashboard');
@@ -44,3 +42,10 @@ Route::group(['prefix' => 'user'], function() {
         Route::patch('/{employee}/information/update', 'Admin\EmployeeController@update')->name('admin_user_employee_update');
     });
 });
+
+Route::resource('memoranda', 'MemorandumController');
+Route::resource('announcements', 'AnnouncementController');
+Route::resource('exams', 'ExamController');
+Route::resource('trainings', 'TrainingController');
+Route::resource('attendances', 'AttendanceController');
+Route::resource('interviews', 'InterviewController');

@@ -27,6 +27,11 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+    public function announcements()
+    {
+        return $this->hasMany(Announcement::class);
+    }
+
     public static function adminStoreUser($createUserRequest)
     {
 
