@@ -43,6 +43,7 @@
             </a>
         </li>
 
+
         <li class="nav-item {{ Request::is('memoranda*') ? 'active' : '' }} {{--@if(Request::is('memoranda*')) active @endif--}}">
             <a class="nav-link" @if((Request::route()->getName() == 'memoranda.index') || (Request::route()->getName() == 'memoranda.create')) style="cursor: default;" @else  href="{{ route('memoranda.index') }}" @endif>
                 <i class="fa fa-file" aria-hidden="true"></i>&nbsp;&nbsp;Memoranda
