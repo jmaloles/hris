@@ -35,7 +35,9 @@ class CreateApplicantRequest extends FormRequest
             'gender'                => 'required',
             'expected_salary'       => 'required',
             'job_position'          => 'required',
-            'type_of_employment'    => 'required'
+            'type_of_employment'    => 'required',
+            'emergency_person_name' => 'required',
+            'emergency_person_contact' => 'required'
         ];
     }
 

@@ -394,3 +394,11 @@ li.nav-item > .nav-link {
     top: 15px;
     width: 1px;
 }
+
+.memorandum-template {
+    padding: 60px;
+}
+
+.unified-field > input[type="text"], textarea {
+    margin-bottom: 10px;
+}

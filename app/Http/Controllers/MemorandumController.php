@@ -37,7 +37,9 @@ class MemorandumController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $storeMemorandum = Memorandum::storeMemorandum($request);
+
+        return $storeMemorandum;
     }
 
     /**

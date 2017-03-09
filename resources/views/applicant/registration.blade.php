@@ -38,7 +38,7 @@
             <div class="col-md-8 col-md-offset-2">
                 <div class="panel panel-default">
                     <div class="panel-body login-body">
-                        <form class="form-horizontal" role="form" method="POST" action="{{ route('applicant_store') }}" autocomplete="off">
+                        <form class="form-horizontal" role="form" method="POST" action="{{ route('applicant_store') }}" autocomplete="off" enctype="multipart/form-data">
                             {{ csrf_field() }}
 
                             @if(Session::has('msg'))
@@ -242,6 +242,46 @@
                                     @if ($errors->has('gender'))
                                         <span class="help-block">
                                         <strong>{{ $errors->first('gender') }}</strong>
+                                    </span>
+                                    @endif
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <hr>
+                            </div>
+
+                            <div class="form-group{{ $errors->has('emergency_person') ? ' has-error' : '' }}">
+                                <label for="InputEmergencyPerson" class="col-md-4 control-label">Emergency Contact</label>
+
+                                <div class="col-md-6">
+                                    <div class="unified-field">
+                                        <input id="InputEmergencyPerson" type="text" class="form-control" placeholder="Emergency Person's Name" name="emergency_person">
+                                        <input id="InputEmergencyPersonContact" type="text" class="form-control" placeholder="Emergency Person's Contact" name="emergency_person_contact">
+                                        <textarea name="emergency_person_address" id="InputEmergencyPersonAddress" class="form-control" placeholder="Emergency Person's Address" cols="20" rows="5"></textarea>
+                                    </div>
+                                    
+                                    @if ($errors->has('emergency_person'))
+                                        <span class="help-block">
+                                        <strong>{{ $errors->first('emergency_person') }}</strong>
+                                    </span>
+                                    @endif
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <hr>
+                            </div>
+
+                            <div class="form-group{{ $errors->has('resumePath') ? ' has-error' : '' }}">
+                                <label for="InputResumeFile" class="col-md-4 control-label">Upload Resume</label>
+
+                                <div class="col-md-6">
+                                    <input id="InputResumeFile" type="file" class="form-control" name="resumePath">
+
+                                    @if ($errors->has('resumePath'))
+                                        <span class="help-block">
+                                        <strong>{{ $errors->first('resumePath') }}</strong>
                                     </span>
                                     @endif
                                 </div>
