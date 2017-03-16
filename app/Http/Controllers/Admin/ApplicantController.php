@@ -97,4 +97,11 @@ class ApplicantController extends Controller
 
         return $hire_applicant;
     }
+
+    public function passInitialInterview(Applicant $applicant)
+    {
+        $passInitialInterview = Applicant::passInitialInterview($applicant);
+
+        return $passInitialInterview;
+    }
 }

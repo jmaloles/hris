@@ -37,7 +37,8 @@ class CreateApplicantRequest extends FormRequest
             'job_position'          => 'required',
             'type_of_employment'    => 'required',
             'emergency_person_name' => 'required',
-            'emergency_person_contact' => 'required'
+            'emergency_person_contact' => 'required',
+            'resumePath' => 'mimes:docx,doc|nullable'
         ];
     }
 

@@ -32,6 +32,9 @@ Route::group(['prefix' => 'user'], function() {
         Route::get('/{applicant}/edit', 'Admin\ApplicantController@edit')->name('admin_applicant_edit');
         Route::patch('/{applicant}/update', 'Admin\ApplicantController@update')->name('admin_user_applicant_update');
         Route::patch('/{applicant}/hire', 'Admin\ApplicantController@hireApplicant')->name('admin_hire_applicant');
+        Route::patch('/{applicant}/interview/initial/pass', 'Admin\ApplicantController@passInitialInterview')->name('admin_pass_initial_applicant');
+        Route::patch('/{applicant}/interview/exam/pass', 'Admin\ApplicantController@passFinalInterview')->name('admin_pass_exam_applicant');
+        Route::patch('/{applicant}/interview/final/pass', 'Admin\ApplicantController@passfinalInterview')->name('admin_pass_final_applicant');
     });
 
     Route::group(['prefix' => 'employee'], function() {
@@ -42,6 +45,12 @@ Route::group(['prefix' => 'user'], function() {
         Route::patch('/{employee}/information/update', 'Admin\EmployeeController@update')->name('admin_user_employee_update');
     });
 });
+
+Route::get('/exam/guard', 'ExamController@examGuard')->name('exam_guard');
+Route::post('/exam/applicant/verify', 'ApplicantController@verifyApplicant')->name('verify_applicant');
+Route::get('/exam/{exam}', 'ExamController@applicantTakeExam')->name('exam_taker');
+Route::post('/exam/{exam}/submit', 'ExamController@submitExam')->name('submit_exam');
+Route::post('/exam/{exam}/submit_exam', 'ExamController@submitReceptionistExam')->name('submit_receptionist_exam');
 
 Route::resource('memoranda', 'MemorandumController');
 Route::resource('announcements', 'AnnouncementController');

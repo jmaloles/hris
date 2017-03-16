@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Exam;
 
 class ExamController extends Controller
 {
@@ -13,7 +14,9 @@ class ExamController extends Controller
      */
     public function index()
     {
-        return view('admin.exam.index');
+        $exams = Exam::all();
+
+        return view('admin.exam.index', compact('exams'));
     }
 
     /**
@@ -80,5 +83,33 @@ class ExamController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function examGuard()
+    {
+        return view('admin.exam.guard');
+    }
+
+    public function applicantTakeExam(Exam $exam)
+    {
+        if($exam->category == "WEB-DEVELOPER") {
+            return view('admin.exam.it', compact('exam'));
+        } else if ($exam->category == "RECEPTIONIST") {
+            return view('admin.exam.receptionist', compact('exam'));
+        }
+    }
+
+    public function submitExam(Request $request, Exam $exam)
+    {
+        $submitExam = Exam::submitExam($request, $exam);
+
+        return $submitExam;
+    }
+
+    public function submitReceptionistExam(Request $request, Exam $exam)
+    {
+        $submitReceptionistExam = Exam::submitReceptionistExam($request, $exam);
+
+        return $submitReceptionistExam;
     }
 }

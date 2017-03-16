@@ -402,3 +402,11 @@ li.nav-item > .nav-link {
 .unified-field > input[type="text"], textarea {
     margin-bottom: 10px;
 }
+
+.questionnaire > .questionnaire-ans {
+    margin-left: 1.5rem;
+}
+
+.questionnaire > .questionnaire-ans > .radio-inline:last-of-type {
+    margin-left: 0rem;
+}
