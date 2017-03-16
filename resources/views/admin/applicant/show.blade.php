@@ -158,8 +158,9 @@
                                                     <label for="initial_interview" class="col-md-4 control-label">Initial Interview:</label>
 
                                                     <div class="col-md-6">
-                                                        <label style="font-size: 13px; line-height: 3;" id="initial_interview" class="label label-@if($applicant->initial_interview == 0)danger @elseif($applicant->initial_interview == 1)warning @elseif($applicant->initial_interview == 2)success @endif
-                                                        ">{{ $applicant->initialInterviewStatus() }}</label>
+                                                        <button type="button" id="initial_interview" class="btn btn-sm btn-@if($applicant->initial_interview == 0)danger @elseif($applicant->initial_interview == 1)warning @elseif($applicant->initial_interview == 2)success @endif
+                                                        "
+                                                        data-toggle="modal" data-target="#ModalPassInitialInterviewApplicant">{{ $applicant->initialInterviewStatus() }}</button>
                                                     </div>
                                                 </div>
 
@@ -167,7 +168,7 @@
                                                     <label for="exam_interview" class="col-md-4 control-label">Exam Interview:</label>
 
                                                     <div class="col-md-6">
-                                                        <label style="font-size: 13px; line-height: 3;" id="exam_interview" class="label label-@if($applicant->exam_interview == 0)danger @elseif($applicant->exam_interview == 1)warning @elseif($applicant->exam_interview == 2)success @endif">{{ $applicant->examInterviewStatus() }}</label>
+                                                        <button id="exam_interview" class="btn btn-sm btn-@if($applicant->exam_interview == 0)danger @elseif($applicant->exam_interview == 1)warning @elseif($applicant->exam_interview == 2)success @endif">{{ $applicant->examInterviewStatus() }}</button>
                                                     </div>
                                                 </div>
 
@@ -175,7 +176,7 @@
                                                     <label for="final_interview" class="col-md-4 control-label">Final Interview:</label>
 
                                                     <div class="col-md-6">
-                                                        <label style="font-size: 13px; line-height: 3;" id="final_interview" class="label label-@if($applicant->final_interview == 0)danger @elseif($applicant->final_interview == 1)warning @elseif($applicant->final_interview == 2)success @endif">{{ $applicant->finalInterviewStatus() }}</label>
+                                                        <button id="final_interview" class="btn btn-sm btn-@if($applicant->final_interview == 0)danger @elseif($applicant->final_interview == 1)warning @elseif($applicant->final_interview == 2)success @endif">{{ $applicant->finalInterviewStatus() }}</button>
                                                     </div>
                                                 </div>
                                             </form>
@@ -253,5 +254,29 @@
                 </div><!-- /.modal-content -->
             </div><!-- /.modal-dialog -->
         </form>
+    </div><!-- /.modal -->
+
+    <div class="modal fade" tabindex="-1" role="dialog" id="ModalPassInitialInterviewApplicant">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Pass Initial Interview</h4>
+                </div>
+                <div class="modal-body">
+                    <p>You are about to update this applicant's Initial Interview status. Continue?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-danger"><i class="fa fa-thumbs-o-down"></i> FAIL</button>
+                    <button class="btn btn-success" onclick="document.getElementById('passInitialInterviewForm').submit();">
+                    <i class="fa fa-thumbs-o-up"></i> PASS</button>
+
+                    <form action="{{ route('admin_pass_initial_applicant', $applicant->id) }}" method="POST" id="passInitialInterviewForm">
+                        {{ csrf_field() }}
+                        {{ method_field('PATCH') }}
+                    </form>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
 @endsection

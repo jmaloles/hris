@@ -94,9 +94,13 @@
                             </div>
 
                             <div class="form-group{{ $errors->has('type_of_employment') ? ' has-error' : '' }}">
-                                <label for="firstName" class="col-md-4 control-label">Type of Employment</label>
+                                <label for="TypeOfEmployment" class="col-md-4 control-label">Type of Employment</label>
                                 <div class="col-md-6">
-                                    <input style="text-transform: uppercase;" id="firstName" type="text" class="form-control" name="type_of_employment" value="{{ old('type_of_employment') }}" required autofocus>
+                                    <select name="type_of_employment" id="TypeOfEmployment" class="form-control" required>
+                                        <option value="FULL-TIME">FULL-TIME</option>
+                                        <option value="PART-TIME">PART-TIME</option>
+                                        <option value="PERMANENT">PERMANENT</option>
+                                    </select>
 
                                     @if ($errors->has('type_of_employment'))
                                         <span class="help-block">
@@ -252,13 +256,13 @@
                             </div>
 
                             <div class="form-group{{ $errors->has('emergency_person') ? ' has-error' : '' }}">
-                                <label for="InputEmergencyPerson" class="col-md-4 control-label">Emergency Contact</label>
+                                <label for="InputEmergencyPersonName" class="col-md-4 control-label">Emergency Contact</label>
 
                                 <div class="col-md-6">
                                     <div class="unified-field">
-                                        <input id="InputEmergencyPerson" type="text" class="form-control" placeholder="Emergency Person's Name" name="emergency_person">
-                                        <input id="InputEmergencyPersonContact" type="text" class="form-control" placeholder="Emergency Person's Contact" name="emergency_person_contact">
-                                        <textarea name="emergency_person_address" id="InputEmergencyPersonAddress" class="form-control" placeholder="Emergency Person's Address" cols="20" rows="5"></textarea>
+                                        <input id="InputEmergencyPersonName" style="text-transform: uppercase;" type="text" class="form-control" placeholder="Emergency Person's Name"  name="emergency_person_name">
+                                        <input id="InputEmergencyPersonContact" style="text-transform: uppercase;" type="text" class="form-control" placeholder="Emergency Person's Contact" name="emergency_person_contact">
+                                        <textarea name="emergency_person_address" id="InputEmergencyPersonAddress" style="text-transform: uppercase;" class="form-control" placeholder="Emergency Person's Address" cols="20" rows="5"></textarea>
                                     </div>
                                     
                                     @if ($errors->has('emergency_person'))

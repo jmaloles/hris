@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Applicant;
 use App\Http\Requests\CreateApplicantRequest;
+use App\Exam;
 
 class ApplicantController extends Controller
 {
@@ -87,5 +88,16 @@ class ApplicantController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function verifyApplicant(Request $request)
+    {
+        $examTaker = Exam::where('applicant_id', $request->get('applicant_id'))->where('status', 'ON-GOING')->first();
+
+        if(count($examTaker) == 0) {
+            return redirect()->back()->with('msg', 'Invalid Applicant ID');
+        }
+
+        return redirect()->route('exam_taker', $examTaker->id);
     }
 }

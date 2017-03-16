@@ -84,6 +84,10 @@
                 </div>
             @endif
 
+            @if(Request::has('msg'))
+                {{ Request::get('msg') }}
+            @endif
+
             <div class="content">
                 <div class="title m-b-md">
                     H.R.I.S
@@ -93,6 +97,8 @@
                 <div class="links">
                     <a class="fp-link"
                        href="{{ route('applicant_registration') }}">Applicants registration</a>
+                       <a class="fp-link"
+                       href="{{ route('exam_guard') }}">Exam for Applicants</a>
                 </div>
             </div>
         </div>

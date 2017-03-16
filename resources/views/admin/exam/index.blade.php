@@ -19,16 +19,6 @@
 
                     <div class="row">
                         <div class="col-lg-12">
-                            <div class="pull-right">
-                                <a href="{{ route('exams.create') }}" class="btn btn-success"><i class="fa fa-file-word-o"></i>&nbsp;&nbsp;Create Exams</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <br>
-
-                    <div class="row">
-                        <div class="col-lg-12">
                             <ul class="nav nav-tabs" role="tablist" style="background-color: white;">
                                 <li role="presentation" class="active">
                                     <a href="#home" aria-controls="home" role="tab" data-toggle="tab">Exams</a>
@@ -43,11 +33,25 @@
                                             <div class="table-responsive">
                                                 <table class="table">
                                                     <thead style="background-color: #eeeeee; border: #ccc solid 1px;">
-
+                                                        <th>#</th>
+                                                        <th>Name</th>
+                                                        <th>Exam Category</th>
+                                                        <th>Exam</th>
+                                                        <th>Date Taken</th>
+                                                        <th>Score</th>
                                                     </thead>
 
                                                     <tbody>
-
+                                                    @foreach($exams as $exam)
+                                                        <tr>
+                                                            <td>{{ $exam->id }}</td>
+                                                            <td>{{ $exam->applicant->fullName() }}</td>
+                                                            <td>{{ $exam->category }}</td>
+                                                            <td>{{ $exam->name }}</td>
+                                                            <td>{{ $exam->created_at }}</td>
+                                                            <td>{{ $exam->score }}</td>
+                                                        </tr>
+                                                    @endforeach
                                                     </tbody>
                                                 </table>
                                             </div>

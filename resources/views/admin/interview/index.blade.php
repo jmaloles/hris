@@ -17,15 +17,15 @@
                         </div>
                     </div>
 
-                    <div class="row">
+                    {{-- <div class="row">
                         <div class="col-lg-12">
                             <div class="pull-right">
                                 <a href="{{ route('interviews.create') }}" class="btn btn-success"><i class="fa fa-comments-o"></i>&nbsp;&nbsp;Create Interview Schedule</a>
                             </div>
                         </div>
-                    </div>
+                    </div> 
 
-                    <br>
+                    <br> --}}
 
                     <div class="row">
                         <div class="col-lg-12">

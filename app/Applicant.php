@@ -46,24 +46,29 @@ class Applicant extends Model
 
     public function examInterviewStatus()
     {
-        if($this->initial_interview == 0) {
+        if($this->exam_interview == 0) {
             return "FAILED";
-        } else if($this->initial_interview == 1) {
+        } else if($this->exam_interview == 1) {
             return "PENDING";
-        } else if ($this->initial_interview == 2) {
+        } else if ($this->exam_interview == 2) {
             return "PASSED";
         }
     }
 
     public function finalInterviewStatus()
     {
-        if($this->initial_interview == 0) {
+        if($this->final_interview == 0) {
             return "FAILED";
-        } else if($this->initial_interview == 1) {
+        } else if($this->final_interview == 1) {
             return "PENDING";
-        } else if ($this->initial_interview == 2) {
+        } else if ($this->final_interview == 2) {
             return "PASSED";
         }
+    }
+
+    public function exam()
+    {
+        return $this->hasOne(Exam::class);
     }
 
     public function fullName()
@@ -73,6 +78,14 @@ class Applicant extends Model
 
     public static function storeApplicant($createApplicantRequest)
     {
+        if(!$createApplicantRequest->hasFile('resumePath')) {
+            $applicantResumeLocation = "N/A";
+        } else {
+            $applicantResume = $createApplicantRequest->file('resumePath');
+            $applicantResume->move(storage_path() . '/applicant_resumes/', $applicantResume->getClientOriginalName());
+            $applicantResumeLocation = 'applicant_resumes/'.$applicantResume->getClientOriginalName();
+        }
+
         $imageType = $createApplicantRequest->get('gender') == 0 ? "applicants_picture/null/female-null.jpg" : "applicants_picture/null/male-null.jpg";
 
         $applicant                      = new Applicant();
@@ -95,6 +108,10 @@ class Applicant extends Model
         $applicant->photo_dir           = $imageType;
         $applicant->type_of_employment  = strtoupper($createApplicantRequest->get('type_of_employment'));
         $applicant->employee_id         = 0;
+        $applicant->emergency_person    = strtoupper($createApplicantRequest->get('emeregency_person'));
+        $applicant->emergency_person_contact = $createApplicantRequest->get('emergency_person_contact');
+        $applicant->emergency_person_address = $createApplicantRequest->get('emergency_person_address');
+        $applicant->resume_path = $applicantResumeLocation;
         $applicant->save();
 
         return redirect()->back()->with('msg', 'Applicant "' . $applicant->fullName() . '" was successfully saved to Applicant List.');
@@ -139,5 +156,20 @@ class Applicant extends Model
         $hireApplicant->save();
 
         return redirect()->route('admin_user_employee_show', $employee->id);
+    }
+
+    public static function passInitialInterview($applicant)
+    {
+        $applicant->initial_interview = 2;
+        $applicant->save();
+
+        $exams = $applicant->exam()->save(new Exam([
+            'score' => 0,
+            'category' => $applicant->job_position,
+            'status' => 'ON-GOING',
+            'name' => $applicant->job_position
+        ]));
+
+        return redirect()->back()->with('msg', 'Applicant "' . $applicant->fullName() .'" has passed the Initial Interview.');
     }
 }
