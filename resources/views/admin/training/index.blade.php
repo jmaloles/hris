@@ -17,7 +17,7 @@
                         </div>
                     </div>
 
-                    <div class="row">
+                    {{-- <div class="row">
                         <div class="col-lg-12">
                             <div class="pull-right">
                                 <a href="{{ route('trainings.create') }}" class="btn btn-success"><i class="fa fa-certificate"></i>&nbsp;&nbsp;Create Trainings Schedule</a>
@@ -25,7 +25,7 @@
                         </div>
                     </div>
 
-                    <br>
+                    <br> --}}
 
                     <div class="row">
                         <div class="col-lg-12">
@@ -47,7 +47,7 @@
                                                     </thead>
 
                                                     <tbody>
-
+                                                        
                                                     </tbody>
                                                 </table>
                                             </div>
