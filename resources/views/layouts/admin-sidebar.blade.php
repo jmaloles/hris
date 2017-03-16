@@ -13,12 +13,6 @@
             </a>
         </li>
 
-        <li class="nav-item {{ Request::is('trainings*') ? 'active' : '' }} {{--@if(Request::is('trainings*')) active @endif--}}">
-            <a class="nav-link" @if((Request::route()->getName() == 'trainings.index') || (Request::route()->getName() == 'trainings.create')) style="cursor: default;" @else  href="{{ route('trainings.index') }}" @endif>
-                <i class="fa fa-certificate" aria-hidden="true"></i>&nbsp;&nbsp;Trainings
-            </a>
-        </li>
-
         <li class="nav-item {{ Request::is('interviews*') ? 'active' : '' }} {{--@if(Request::is('interviews*')) active @endif--}}">
             <a class="nav-link" @if((Request::route()->getName() == 'interviews.index') || (Request::route()->getName() == 'interviews.create')) style="cursor: default;" @else  href="{{ route('interviews.index') }}" @endif>
                 <i class="fa fa-comments-o" aria-hidden="true"></i>&nbsp;&nbsp;Interviews

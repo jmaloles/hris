@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddColumnsOnTrainingsTable extends Migration
+class CreateEmployeeTopicTrainingsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,11 @@ class AddColumnsOnTrainingsTable extends Migration
      */
     public function up()
     {
-        Schema::rename('trainings', 'training_user');
-        
-        Schema::table('training_user', function (Blueprint $table) {
-            $table->string('title');
-            $table->integer('user_id');
-            $table->string('lesson');
+        Schema::create('employee_topic_trainings', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('topic');
             $table->string('status');
+            $table->timestamps();
         });
     }
 
@@ -30,6 +28,6 @@ class AddColumnsOnTrainingsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('training_user');
+        Schema::dropIfExists('employee_topic_trainings');
     }
 }

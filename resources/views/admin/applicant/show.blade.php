@@ -35,6 +35,16 @@
                         </div>
                     </div>
 
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="panel panel-default">
+                                <div class="panel-body">
+                                    <a href="{{ route('view_interview', $applicant->id) }}" class="btn btn-primary">View Initial Interview Question</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                     {{--<div class="row">
                         <div class="col-lg-12">
                             <div class="pull-right">
@@ -168,7 +178,7 @@
                                                     <label for="exam_interview" class="col-md-4 control-label">Exam Interview:</label>
 
                                                     <div class="col-md-6">
-                                                        <button id="exam_interview" class="btn btn-sm btn-@if($applicant->exam_interview == 0)danger @elseif($applicant->exam_interview == 1)warning @elseif($applicant->exam_interview == 2)success @endif">{{ $applicant->examInterviewStatus() }}</button>
+                                                        <button type="button" data-toggle="modal" data-target="#ModalPassExamInterviewApplicant" id="exam_interview" class="btn btn-sm btn-@if($applicant->exam_interview == 0)danger @elseif($applicant->exam_interview == 1)warning @elseif($applicant->exam_interview == 2)success @endif">{{ $applicant->examInterviewStatus() }}</button>
                                                     </div>
                                                 </div>
 
@@ -272,6 +282,30 @@
                     <i class="fa fa-thumbs-o-up"></i> PASS</button>
 
                     <form action="{{ route('admin_pass_initial_applicant', $applicant->id) }}" method="POST" id="passInitialInterviewForm">
+                        {{ csrf_field() }}
+                        {{ method_field('PATCH') }}
+                    </form>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+    <div class="modal fade" tabindex="-1" role="dialog" id="ModalPassExamInterviewApplicant">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Pass Examination</h4>
+                </div>
+                <div class="modal-body">
+                    <p>You are about to update this applicant's Examination status to pass. Continue?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-danger"><i class="fa fa-thumbs-o-down"></i> FAIL</button>
+                    <button class="btn btn-success" onclick="document.getElementById('passExaminationInterviewForm').submit();">
+                    <i class="fa fa-thumbs-o-up"></i> PASS</button>
+
+                    <form action="{{ route('admin_pass_examination_applicant', $applicant->id) }}" method="POST" id="passExaminationInterviewForm">
                         {{ csrf_field() }}
                         {{ method_field('PATCH') }}
                     </form>

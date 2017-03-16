@@ -16,6 +16,7 @@
 
                         <ul class="dropdown-menu" role="menu" style="margin-top: 0.55rem; margin-right: -4rem;">
                            <li><a href="{{ route('admin_user_employee_edit', $employee->id) }}"><i class="fa fa-edit"></i>&nbsp;Edit Information</a></li>
+                           <li><a style="cursor: pointer;" data-toggle="modal" data-target="#EmployeeCreateTrainingModal"><i class="fa fa-plus"></i>&nbsp;Add Training</a></li>
                            <li><a style="cursor: pointer;" data-toggle="modal" data-target="#ChangeLeaveRemainingModal"><i class="fa fa-pencil-square" aria-hidden="true"></i>&nbsp;Update Leaves</a></li>
                            <li><a style="cursor: pointer;" data-toggle="modal" data-target="#FileVacationLeaveModal"><i class="fa fa-plane" aria-hidden="true"></i>&nbsp;File Vacation Leave</a></li>
                            <li><a href="javascript:void(0)" data-toggle="modal" data-target="#UploadResumeModal"><i class="fa fa-stethoscope" aria-hidden="true"></i>&nbsp;File Sick Leave</a></li>
@@ -86,74 +87,84 @@
                                  <div class="col-lg-6">
                                     <form class="form-horizontal">
 
-                                       <fieldset disabled>
-                                       <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                                          <label for="email" class="col-md-5 control-label">Company E-mail:</label>
-
-                                          <div class="col-md-6">
-                                             <input style="width: 400px;" id="email" class="form-control" value="{{ $employee->email }}">
-                                          </div>
+                                       <div class="row">
+                                          <a href="{{ route('user_employee_view_training', $employee->id) }}">View Training</a>
                                        </div>
 
-                                       <div class="form-group{{ $errors->has('Position') ? ' has-error' : '' }}">
-                                          <label for="Position" class="col-md-5 control-label">Position:</label>
-
-                                          <div class="col-md-6">
-                                             <input style="width: 400px;" id="Position" class="form-control" value="{{ $employee->applicant->job_position }}">
-                                          </div>
+                                       <div class="row">
+                                          <hr style="width: 170%;">
                                        </div>
 
-                                       <div class="form-group{{ $errors->has('salary') ? ' has-error' : '' }}">
-                                          <label for="salary" class="col-md-5 control-label">Salary:</label>
+                                       <div class="row">
+                                          <fieldset disabled>
+                                          <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
+                                             <label for="email" class="col-md-5 control-label">Company E-mail:</label>
 
-                                          <div class="col-md-6">
-                                             <div class="input-group">
-                                                <div class="input-group-addon">PHP</div>
-                                                <input style="width: 347px;" id="salary" class="form-control" value="{{ $employee->salary }}">
+                                             <div class="col-md-6">
+                                                <input style="width: 400px;" id="email" class="form-control" value="{{ $employee->email }}">
                                              </div>
                                           </div>
-                                       </div>
 
-                                       <div class="form-group{{ $errors->has('sss') ? ' has-error' : '' }}">
-                                          <label for="sss" class="col-md-5 control-label">SSS:</label>
+                                          <div class="form-group{{ $errors->has('Position') ? ' has-error' : '' }}">
+                                             <label for="Position" class="col-md-5 control-label">Position:</label>
 
-                                          <div class="col-md-6">
-                                             <input style="width: 400px;" id="sss" class="form-control" value="{{ $employee->sss }}">
+                                             <div class="col-md-6">
+                                                <input style="width: 400px;" id="Position" class="form-control" value="{{ $employee->applicant->job_position }}">
+                                             </div>
                                           </div>
-                                       </div>
 
-                                       <div class="form-group{{ $errors->has('philhealth') ? ' has-error' : '' }}">
-                                          <label for="philhealth" class="col-md-5 control-label">Phil Health:</label>
+                                          <div class="form-group{{ $errors->has('salary') ? ' has-error' : '' }}">
+                                             <label for="salary" class="col-md-5 control-label">Salary:</label>
 
-                                          <div class="col-md-6">
-                                             <input style="width: 400px;" id="philhealth" class="form-control" value="{{ $employee->philhealth }}">
+                                             <div class="col-md-6">
+                                                <div class="input-group">
+                                                   <div class="input-group-addon">PHP</div>
+                                                   <input style="width: 347px;" id="salary" class="form-control" value="{{ $employee->salary }}">
+                                                </div>
+                                             </div>
                                           </div>
-                                       </div>
 
-                                       <div class="form-group{{ $errors->has('pag_ibig') ? ' has-error' : '' }}">
-                                          <label for="pag_ibig" class="col-md-5 control-label">Pag-ibig:</label>
+                                          <div class="form-group{{ $errors->has('sss') ? ' has-error' : '' }}">
+                                             <label for="sss" class="col-md-5 control-label">SSS:</label>
 
-                                          <div class="col-md-6">
-                                             <input style="width: 400px;" id="pag_ibig" class="form-control" value="{{ $employee->pag_ibig }}">
+                                             <div class="col-md-6">
+                                                <input style="width: 400px;" id="sss" class="form-control" value="{{ $employee->sss }}">
+                                             </div>
                                           </div>
-                                       </div>
 
-                                       <div class="form-group{{ $errors->has('nbi_clearance') ? ' has-error' : '' }}">
-                                          <label for="nbi_clearance" class="col-md-5 control-label">NBI Clearance:</label>
+                                          <div class="form-group{{ $errors->has('philhealth') ? ' has-error' : '' }}">
+                                             <label for="philhealth" class="col-md-5 control-label">Phil Health:</label>
 
-                                          <div class="col-md-6">
-                                             <input style="width: 400px;" id="nbi_clearance" class="form-control" value="{{ $employee->nbi_clearance }}">
+                                             <div class="col-md-6">
+                                                <input style="width: 400px;" id="philhealth" class="form-control" value="{{ $employee->philhealth }}">
+                                             </div>
                                           </div>
-                                       </div>
 
-                                       <div class="form-group{{ $errors->has('tin') ? ' has-error' : '' }}">
-                                          <label for="tin" class="col-md-5 control-label">Tax Identification Number (TIN):</label>
+                                          <div class="form-group{{ $errors->has('pag_ibig') ? ' has-error' : '' }}">
+                                             <label for="pag_ibig" class="col-md-5 control-label">Pag-ibig:</label>
 
-                                          <div class="col-md-6">
-                                             <input style="width: 400px;" id="tin" class="form-control" value="{{ $employee->tin }}">
+                                             <div class="col-md-6">
+                                                <input style="width: 400px;" id="pag_ibig" class="form-control" value="{{ $employee->pag_ibig }}">
+                                             </div>
                                           </div>
+
+                                          <div class="form-group{{ $errors->has('nbi_clearance') ? ' has-error' : '' }}">
+                                             <label for="nbi_clearance" class="col-md-5 control-label">NBI Clearance:</label>
+
+                                             <div class="col-md-6">
+                                                <input style="width: 400px;" id="nbi_clearance" class="form-control" value="{{ $employee->nbi_clearance }}">
+                                             </div>
+                                          </div>
+
+                                          <div class="form-group{{ $errors->has('tin') ? ' has-error' : '' }}">
+                                             <label for="tin" class="col-md-5 control-label">Tax Identification Number (TIN):</label>
+
+                                             <div class="col-md-6">
+                                                <input style="width: 400px;" id="tin" class="form-control" value="{{ $employee->tin }}">
+                                             </div>
+                                          </div>
+                                          </fieldset>
                                        </div>
-                                       </fieldset>
 
                                     </form>
                                  </div>
@@ -379,6 +390,42 @@
          </div><!-- /.modal-dialog -->
       </form>
    </div><!-- /.modal -->
+
+   <div class="modal fade" tabindex="-1" role="dialog" id="EmployeeCreateTrainingModal">
+      <form class="form-horizontal" action="{{ route('admin_add_training_to_employee', $employee->id) }}" method="POST">
+         {{ csrf_field() }}
+
+         <div class="modal-dialog" role="document">
+            <div class="modal-content">
+               <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                  <h4 class="modal-title">Add Employee Training</h4>
+               </div>
+
+               <div class="modal-body">
+                  <div class="form-group">
+                     <label for="TrainingTitle" class="control-label col-lg-4">Training Title</label>
+                     <div class="col-lg-6">
+                        <input name="title" id="title" type="text" class="form-control" value="{{ old('title') }}">
+                     </div>
+                  </div>
+
+                  <div class="form-group">
+                     <label for="lesson" class="control-label col-lg-4">Topic</label>
+                     <div class="col-lg-6">
+                        <input name="lesson" id="lesson" type="text" class="form-control" value="{{ old('lesson') }}">
+                     </div>
+                  </div>
+               </div>
+
+               <div class="modal-footer">
+                  <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                  <button type="submit" class="btn btn-success">Save</button>
+               </div>
+            </div><!-- /.modal-content -->
+         </div><!-- /.modal-dialog -->
+      </form>
+   </div><!-- /.modal --> 
 
    <div class="modal fade" tabindex="-1" role="dialog" id="FileVacationLeaveModal">
       <form class="form-horizontal" action="{{ route('admin_user_employee_file_vacation_leaves', $employee->id) }}" method="POST">

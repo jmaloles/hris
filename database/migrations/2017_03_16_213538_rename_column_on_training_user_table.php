@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddColumnsOnTrainingsTable extends Migration
+class RenameColumnOnTrainingUserTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,11 @@ class AddColumnsOnTrainingsTable extends Migration
      */
     public function up()
     {
-        Schema::rename('trainings', 'training_user');
-        
         Schema::table('training_user', function (Blueprint $table) {
-            $table->string('title');
-            $table->integer('user_id');
-            $table->string('lesson');
-            $table->string('status');
+            $table->renameColumn('user_id', 'employee_id');
         });
+
+        Schema::rename('training_user', 'employee_training');
     }
 
     /**
@@ -30,6 +27,6 @@ class AddColumnsOnTrainingsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('training_user');
+        Schema::dropIfExists('employee_training');
     }
 }

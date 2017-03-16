@@ -35,6 +35,21 @@ Route::group(['prefix' => 'user'], function() {
         Route::patch('/{applicant}/interview/initial/pass', 'Admin\ApplicantController@passInitialInterview')->name('admin_pass_initial_applicant');
         Route::patch('/{applicant}/interview/exam/pass', 'Admin\ApplicantController@passFinalInterview')->name('admin_pass_exam_applicant');
         Route::patch('/{applicant}/interview/final/pass', 'Admin\ApplicantController@passfinalInterview')->name('admin_pass_final_applicant');
+        Route::patch('/{applicant}/examination/pass', function(App\Applicant $applicant) {
+            $applicant->update(['exam_interview' => 2]);
+
+            return redirect()->back()->with('msg', 'Applicant passed the exam.');
+        })->name('admin_pass_examination_applicant');
+
+        Route::get('{applicant}/interview_question', function(App\Applicant $applicant) {
+            if($applicant->job_position == "RECEPTIONIST") {
+                return view('admin.interview.receptionist', compact('applicant'));
+            }
+
+            if($applicant->job_position == "WEB-DEVELOPER") {
+                return view('admin.interview.it', compact('applicant'));
+            }
+        })->name('view_interview');
     });
 
     Route::group(['prefix' => 'employee'], function() {
@@ -43,14 +58,24 @@ Route::group(['prefix' => 'user'], function() {
         Route::patch('/{employee}/update_leaves', 'Admin\EmployeeController@adminEmployeeUpdateLeave')->name('admin_user_employee_update_leaves');
         Route::post('/{employee}/leave/vacation/submit', 'Employee\VacationLeaveController@store')->name('admin_user_employee_file_vacation_leaves');
         Route::patch('/{employee}/information/update', 'Admin\EmployeeController@update')->name('admin_user_employee_update');
+        Route::get('/{employee}/training/{training}', 'Admin\EmployeeController@addTopicToEmployee')->name('add_topic_to_employee');
+        Route::post('/{employee}/training/store', 'TrainingController@store')->name('admin_add_training_to_employee');
+        Route::get('/{employee}/training', 'Admin\EmployeeController@viewTraining')->name('user_employee_view_training');
     });
 });
+
+
 
 Route::get('/exam/guard', 'ExamController@examGuard')->name('exam_guard');
 Route::post('/exam/applicant/verify', 'ApplicantController@verifyApplicant')->name('verify_applicant');
 Route::get('/exam/{exam}', 'ExamController@applicantTakeExam')->name('exam_taker');
 Route::post('/exam/{exam}/submit', 'ExamController@submitExam')->name('submit_exam');
 Route::post('/exam/{exam}/submit_exam', 'ExamController@submitReceptionistExam')->name('submit_receptionist_exam');
+
+Route::group(['prefix' => 'training'], function() {
+    Route::post('/{training}/topic/store', 'EmployeeTopicTrainingController@store')->name('add_lessons');
+    
+});
 
 Route::resource('memoranda', 'MemorandumController');
 Route::resource('announcements', 'AnnouncementController');
