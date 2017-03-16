@@ -12,7 +12,7 @@
                             </div>
                         @endif
 
-                        <form class="" role="form" method="POST" action="{{ route('submit_exam', $exam->id) }}">
+                        <form class="" role="form" method="POST">
                             {{ csrf_field() }}
                             <br>
 
@@ -76,14 +76,6 @@
 
                                     </div>
                                 </div>
-                            </div>
-
-                            <div class="row">
-                                <hr>
-                            </div>
-
-                            <div class="pull-right">
-                                <button type="submit" class="btn btn-success">Submit</button>
                             </div>
 
                         </form>

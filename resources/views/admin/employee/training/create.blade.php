@@ -11,10 +11,20 @@
                         <div class="col-lg-12">
                             <div class="panel-1 panel-trans">
                                 <div class="panel-heading-1">
-                                    <h4><i class="fa fa-certificate"></i>&nbsp;&nbsp;Trainings</h4>
+                                    <h4><i class="fa fa-certificate"></i>&nbsp;&nbsp;{{ strtoupper($training->title) }}</h4>
                                 </div>
                             </div>
                         </div>
+                    </div>
+
+                    <div class="row">
+                        @if(Session::has('msg'))
+                            <div class="col-lg-12">
+                                <div class="alert alert-info" role="alert">
+                                    {{ Session::get('msg') }}
+                                </div>
+                            </div>
+                        @endif
                     </div>
 
                     {{-- <div class="row">
@@ -31,7 +41,7 @@
                         <div class="col-lg-12">
                             <ul class="nav nav-tabs" role="tablist" style="background-color: white;">
                                 <li role="presentation" class="active">
-                                    <a href="#home" aria-controls="home" role="tab" data-toggle="tab">Trainings</a>
+                                    <a href="#home" aria-controls="home" role="tab" data-toggle="tab">Create</a>
                                 </li>
                             </ul>
 
@@ -40,17 +50,22 @@
                                 <div role="tabpanel" class="tab-pane active" id="home">
                                     <div class="row">
                                         <div class="col-lg-12">
-                                            <div class="table-responsive">
-                                                <table class="table">
-                                                    <thead style="background-color: #eeeeee; border: #ccc solid 1px;">
+                                            <form action="{{ route('add_lessons', $training->id) }}" class="form-horizontal" method="POST">
+                                                {{ csrf_field() }}
 
-                                                    </thead>
+                                                <div class="form-group">
+                                                    <label for="" class="col-md-4 control-label">Topic:</label>
+                                                    <div class="col-md-6">
+                                                        <input type="text" class="form-control" name="topic" value="{{ old('topic') }}">
+                                                    </div>
+                                                </div>
 
-                                                    <tbody>
-                                                        
-                                                    </tbody>
-                                                </table>
-                                            </div>
+                                                <div class="row">
+                                                    <hr>
+                                                </div>
+
+                                                <button type="submit" class="btn btn-success">Save</button>
+                                            </form>
                                         </div>
                                     </div>
 

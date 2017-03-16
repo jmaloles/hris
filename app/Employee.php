@@ -22,6 +22,11 @@ class Employee extends Model
         return $this->hasOne(Applicant::class);
     }
 
+    public function employee_trainings()
+    {
+        return $this->hasMany(Training::class);
+    }
+
     public static function adminUpdateEmployeeLeave($request, $employee)
     {
         if((is_numeric($request->get('vl_remaining')) || (is_numeric($request->get('el_remaining'))) || (is_numeric($request->get('sl_remaining'))))) {

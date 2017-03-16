@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Employee;
 use App\Http\Requests\UpdateEmployeeRequest;
+use App\Training;
 
 class EmployeeController extends Controller
 {
@@ -23,9 +24,11 @@ class EmployeeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function viewTraining(Employee $employee)
     {
-        //
+        $employeeTrainings = Training::whereEmployeeId($employee->id)->get();
+
+        return view('admin.employee.training.index', compact('employee', 'employeeTrainings'));
     }
 
     /**
@@ -101,5 +104,10 @@ class EmployeeController extends Controller
         $adminEmployeeUpdateLeave = Employee::adminUpdateEmployeeLeave($request, $employee);
 
         return $adminEmployeeUpdateLeave;
+    }
+
+    public function addTopicToEmployee($employee, $training)
+    {
+        return view('admin.employee.training.create', compact('employee', 'training'));
     }
 }

@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Employee;
+use App\EmployeeTopicTraining;
 use App\Training;
 
-class TrainingController extends Controller
+class EmployeeTopicTrainingController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +15,7 @@ class TrainingController extends Controller
      */
     public function index()
     {
-        return view('admin.training.index');
+        //
     }
 
     /**
@@ -25,7 +25,7 @@ class TrainingController extends Controller
      */
     public function create()
     {
-        
+        //
     }
 
     /**
@@ -34,11 +34,11 @@ class TrainingController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, Employee $employee)
+    public function store(Request $request, Training $training)
     {
-        $storeTraining = Training::storeTrainingToEmployee($request, $employee);
+        $storeTopicToEmployeeTraining = EmployeeTopicTraining::store($request, $training);
 
-        return $storeTraining;
+        return $storeTopicToEmployeeTraining;
     }
 
     /**
