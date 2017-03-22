@@ -24,7 +24,7 @@ Route::post('applicant/store', 'ApplicantController@store')->name('applicant_sto
 Route::group(['prefix' => 'user'], function() {
     Route::get('/employees', 'Admin\UserController@index')->name('admin_user_index');
     Route::get('/create', 'Admin\UserController@create')->name('admin_user_create');
-    Route::post('/store', 'Admin\PendingUserController@store')->name('admin_pending_user_store');
+    // Route::post('/store', 'Admin\PendingUserController@store')->name('admin_pending_user_store');
 
     Route::get('/applicants', 'ApplicantController@index')->name('admin_user_applicant_index');
     Route::group(['prefix' => 'applicant'], function() {
@@ -64,7 +64,7 @@ Route::group(['prefix' => 'user'], function() {
     });
 });
 
-
+// RESOURCES
 
 Route::get('/exam/guard', 'ExamController@examGuard')->name('exam_guard');
 Route::post('/exam/applicant/verify', 'ApplicantController@verifyApplicant')->name('verify_applicant');
@@ -74,12 +74,30 @@ Route::post('/exam/{exam}/submit_exam', 'ExamController@submitReceptionistExam')
 
 Route::group(['prefix' => 'training'], function() {
     Route::post('/{training}/topic/store', 'EmployeeTopicTrainingController@store')->name('add_lessons');
-    
+    Route::post('/{training}/enroll_employee', 'TrainingController@enrollEmployee')->name('training.enroll');
 });
 
-Route::resource('memoranda', 'MemorandumController');
+Route::post('/lesson/{lesson}', 'TopicController@uploadLessonModule')->name('upload_lesson');
+Route::any('/lesson/{lesson}/{pdf}', function(App\Lesson $lesson, $pdf) {
+
+  $path = $lesson->pathDir();
+  $file = $path.'/'.$pdf;
+  $filename = $pdf;
+  header('Content-type: application/pdf');
+  header('Content-Disposition: inline; filename="' . $filename . '"');
+  header('Content-Transfer-Encoding: binary');
+  header('Accept-Ranges: bytes');
+  @readfile($file);
+
+});
+
+Route::resource('disciplinary_action', 'DisciplinaryActionController');
 Route::resource('announcements', 'AnnouncementController');
 Route::resource('exams', 'ExamController');
-Route::resource('trainings', 'TrainingController');
+
+Route::resource('training', 'TrainingController');
+Route::resource('topics', 'TopicController');
+Route::resource('lessons', 'LessonController');
+
 Route::resource('attendances', 'AttendanceController');
 Route::resource('interviews', 'InterviewController');

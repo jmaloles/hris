@@ -223,6 +223,67 @@
                                                                 @endif
                                                             </div>
                                                         </div>
+
+                                                        <div class="row">
+                                                           <hr>
+                                                        </div>
+
+                                                        <div class="form-group{{ $errors->has('sss') ? ' has-error' : '' }}">
+                                                            <label for="SSS" class="col-md-4 control-label">SSS:</label>
+
+                                                            <div class="col-md-6">
+                                                                <input name="sss" id="SSS" class="form-control" value="{{ $applicant->sss }}" placeholder="##-###-##-##-#">
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="form-group{{ $errors->has('pag_ibig') ? ' has-error' : '' }}">
+                                                            <label for="pag_ibig" class="col-md-4 control-label">Pag-ibig:</label>
+
+                                                            <div class="col-md-6">
+                                                                <input name="pag_ibig" id="pag_ibig" class="form-control" value="{{ $applicant->pag_ibig }}" placeholder="####-####-####">
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="form-group{{ $errors->has('philhealth') ? ' has-error' : '' }}">
+                                                            <label for="philhealth" class="col-md-4 control-label">Phil Health:</label>
+
+                                                            <div class="col-md-6">
+                                                                <input name="philhealth" id="philhealth" class="form-control" value="{{ $applicant->philhealth }}" placeholder="####-#####-##-##">
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="form-group{{ $errors->has('nbi_clearance') ? ' has-error' : '' }}">
+                                                            <label for="nbi_clearance" class="col-md-4 control-label">NBI Clearance:</label>
+
+                                                            <div class="col-md-6">
+                                                                <div class="radio-inline">
+                                                                    <label>
+                                                                        <input type="radio" name="nbi_clearance" id="nbi_clearance" value="YES" {!! $applicant->nbi_clearance == "YES" ? "checked" : "" !!}>
+                                                                        YES
+                                                                    </label>
+                                                                </div>
+                                                                <div class="radio-inline">
+                                                                    <label>
+                                                                        <input type="radio" name="nbi_clearance" id="nbi_clearance" value="NO" {!! $applicant->nbi_clearance == "NO" ? "checked" : "" !!}>
+                                                                        NO
+                                                                    </label>
+                                                                </div>
+
+                                                                @if ($errors->has('nbi_clearance'))
+                                                                   <span class="help-block">
+                                                                       <strong>{{ $errors->first('nbi_clearance') }}</strong>
+                                                                   </span>
+                                                                @endif
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="form-group{{ $errors->has('tin') ? ' has-error' : '' }}">
+                                                            <label for="tin" class="col-md-4 control-label">Tax Identificatio Number(TIN):</label>
+
+                                                            <div class="col-md-6">
+                                                                <input name="tin" id="tin" class="form-control" value="{{ $applicant->tin }}" placeholder="##-#######">
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                 </div>
 
@@ -253,7 +314,16 @@
     </div>
 
     <script>
+
+
         $(document).ready(function() {
+           $(function(){
+              $("#tin").mask("99-9999999", {placeholder:"##-#######"});
+              $("#SSS").mask("99-999-99-99-9", {placeholder:"##-###-##-##-#"});
+              $("#philhealth").mask("9999-99999-99-99", {placeholder:"####-#####-##-##"});
+              $("#pag_ibig").mask("9999-9999-9999", {placeholder:"####-####-####"});
+           });
+
             $('.input-group.date').datepicker({
                 format: "yyyy-mm-dd"
             });

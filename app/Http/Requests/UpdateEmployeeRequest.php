@@ -37,10 +37,11 @@ class UpdateEmployeeRequest extends FormRequest
             'fileToUpload'      => 'mimes:jpeg,png,jpg|nullable',
             // EMPLOYEE FIELD
             'company_email'     => 'nullable|email|unique:employees,email,'.$this->request->get('employee_id'),
-            'sss'               => array('unique:employees,sss,'.$this->request->get('employee_id'),                             'regex:/^[0-9]{2}[-][0-9]{3}[-][0-9]{2}[-][0-9]{2}[-][0-9]{1}$/i', 'nullable'),
+            'sss'               => array('unique:employees,sss,'.$this->request->get('employee_id'), 'regex:/^[0-9]{2}[-][0-9]{3}[-][0-9]{2}[-][0-9]{2}[-][0-9]{1}$/i', 'nullable'),
             'philhealth'        => array('unique:employees,philhealth,'.$this->request->get('employee_id'), 'regex:/^[0-9]{4}[-][0-9]{5}[-][0-9]{2}[-][0-9]{2}$/i', 'nullable'),
             'pag_ibig'          => array('unique:employees,pag_ibig,'.$this->request->get('employee_id'), 'regex:/^[0-9]{4}[-][0-9]{4}[-][0-9]{4}$/i', 'nullable'),
             'tin'               => array('unique:employees,tin,'.$this->request->get('employee_id'), 'regex:/^[0-9]{2}[-][0-9]{7}$/i', 'nullable'),
+            'nbi_clearance'     => 'required'
         ];
     }
 }

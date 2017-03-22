@@ -12,7 +12,7 @@ class Applicant extends Model
     protected $fillable = [
         'first_name', 'middle_initial', 'last_name', 'date_of_birth', 'address', 'mobile_number',
         'home_number', 'email', 'gender', 'initial_interview', 'exam_interview', 'final_interview', 'photo_dir',
-        'employee_id'
+        'employee_id', 'sss', 'philhealth', 'tin', 'pag_ibig', 'nbi_clearance'
     ];
     //
 
@@ -99,6 +99,11 @@ class Applicant extends Model
         $applicant->address             = strtoupper($createApplicantRequest->get('address'));
         $applicant->mobile_number       = $createApplicantRequest->get('mobile_number');
         $applicant->home_number         = $createApplicantRequest->get('home_number');
+        $applicant->sss                 = $createApplicantRequest->get('sss');
+        $applicant->philhealth          = $createApplicantRequest->get('philhealth');
+        $applicant->pag_ibig            = $createApplicantRequest->get('pag_ibig');
+        $applicant->tin                 = $createApplicantRequest->get('tin');
+        $applicant->nbi_clearance       = $createApplicantRequest->get('nbi_clearance');
         $applicant->age                 = $applicant->getAge($createApplicantRequest->get('date_of_birth'));
         $applicant->initial_interview   = 1;
         $applicant->exam_interview      = 1;
@@ -139,7 +144,12 @@ class Applicant extends Model
             'mobile_number'     => $updateApplicantRequest->get('mobile_number'),
             'home_number'       => $updateApplicantRequest->get('home_number'),
             'gender'            => $updateApplicantRequest->get('gender'),
-            'photo_dir'         => $applicantPhotoLocation
+            'photo_dir'         => $applicantPhotoLocation,
+            'sss'               => $updateApplicantRequest->get('sss'),
+            'philhealth'        => $updateApplicantRequest->get('philhealth'),
+            'pag_ibig'          => $updateApplicantRequest->get('pag_ibig'),
+            'tin'               => $updateApplicantRequest->get('tin'),
+            'nbi_clearance'     => $updateApplicantRequest->get('nbi_clearance')
         ]);
 
         return redirect()->back()->with('msg', 'You have successfully updated "' . $applicant->fullName() . '" Information');

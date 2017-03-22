@@ -252,6 +252,67 @@
                             </div>
 
                             <div class="row">
+                               <hr>
+                            </div>
+
+                            <div class="form-group{{ $errors->has('sss') ? ' has-error' : '' }}">
+                                <label for="SSS" class="col-md-4 control-label">SSS:</label>
+
+                                <div class="col-md-6">
+                                   <input name="sss" id="SSS" class="form-control" placeholder="##-###-##-##-#">
+                                </div>
+                            </div>
+
+                            <div class="form-group{{ $errors->has('pag_ibig') ? ' has-error' : '' }}">
+                                <label for="pag_ibig" class="col-md-4 control-label">Pag-ibig:</label>
+
+                                <div class="col-md-6">
+                                   <input name="pag_ibig" id="pag_ibig" class="form-control" placeholder="####-####-####">
+                                </div>
+                            </div>
+
+                            <div class="form-group{{ $errors->has('philhealth') ? ' has-error' : '' }}">
+                                <label for="philhealth" class="col-md-4 control-label">Phil Health:</label>
+
+                                <div class="col-md-6">
+                                   <input name="philhealth" id="philhealth" class="form-control" placeholder="####-#####-##-##">
+                                </div>
+                            </div>
+
+                            <div class="form-group{{ $errors->has('nbi_clearance') ? ' has-error' : '' }}">
+                                <label for="nbi_clearance" class="col-md-4 control-label">NBI Clearance:</label>
+
+                                <div class="col-md-6">
+                                    <div class="radio-inline">
+                                        <label>
+                                            <input type="radio" name="nbi_clearance" id="nbi_clearance" value="YES">
+                                            YES
+                                        </label>
+                                    </div>
+                                    <div class="radio-inline">
+                                        <label>
+                                            <input type="radio" name="nbi_clearance" id="nbi_clearance" value="NO">
+                                            NO
+                                        </label>
+                                    </div>
+
+                                    @if ($errors->has('nbi_clearance'))
+                                       <span class="help-block">
+                                           <strong>{{ $errors->first('nbi_clearance') }}</strong>
+                                       </span>
+                                    @endif
+                                </div>
+                            </div>
+
+                            <div class="form-group{{ $errors->has('tin') ? ' has-error' : '' }}">
+                                <label for="tin" class="col-md-4 control-label">Tax Identificatio Number(TIN):</label>
+
+                                <div class="col-md-6">
+                                   <input name="tin" id="tin" class="form-control" placeholder="##-#######">
+                                </div>
+                            </div>
+
+                            <div class="row">
                                 <hr>
                             </div>
 
@@ -264,7 +325,7 @@
                                         <input id="InputEmergencyPersonContact" style="text-transform: uppercase;" type="text" class="form-control" placeholder="Emergency Person's Contact" name="emergency_person_contact">
                                         <textarea name="emergency_person_address" id="InputEmergencyPersonAddress" style="text-transform: uppercase;" class="form-control" placeholder="Emergency Person's Address" cols="20" rows="5"></textarea>
                                     </div>
-                                    
+
                                     @if ($errors->has('emergency_person'))
                                         <span class="help-block">
                                         <strong>{{ $errors->first('emergency_person') }}</strong>
@@ -315,6 +376,13 @@
     </div>
 
     <script>
+          $(function(){
+            $("#tin").mask("99-9999999", {placeholder:"##-#######"});
+            $("#SSS").mask("99-999-99-99-9", {placeholder:"##-###-##-##-#"});
+            $("#philhealth").mask("9999-99999-99-99", {placeholder:"####-#####-##-##"});
+            $("#pag_ibig").mask("9999-9999-9999", {placeholder:"####-####-####"});
+          });
+
         $(document).ready(function () {
             $("#expectedSalary").on("focusout", function (e) {
                 e.preventDefault();

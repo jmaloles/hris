@@ -3,10 +3,20 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Memorandum;
+use App\DisciplinaryAction;
 
-class MemorandumController extends Controller
+class DisciplinaryActionController extends Controller
 {
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -14,9 +24,9 @@ class MemorandumController extends Controller
      */
     public function index()
     {
-        $memoranda = Memorandum::all();
+        $discplinary_actions = DisciplinaryAction::all();
 
-        return view('admin.memorandum.index', compact('memoranda'));
+        return view('admin.disciplinary_action.index', compact('discplinary_actions'));
     }
 
     /**
@@ -26,7 +36,7 @@ class MemorandumController extends Controller
      */
     public function create()
     {
-        return view('admin.memorandum.create');
+        return view('admin.disciplinary_action.create');
     }
 
     /**
@@ -37,9 +47,9 @@ class MemorandumController extends Controller
      */
     public function store(Request $request)
     {
-        $storeMemorandum = Memorandum::storeMemorandum($request);
+        $storeDisciplinaryAction = DisciplinaryAction::storeDisciplinaryAction($request);
 
-        return $storeMemorandum;
+        return $storeDisciplinaryAction;
     }
 
     /**

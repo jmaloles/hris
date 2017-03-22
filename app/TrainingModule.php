@@ -4,7 +4,8 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class EmployeeMemorandum extends Model
+class TrainingModule extends Model
 {
     //
+    protected $fillable = ['path'];
 }

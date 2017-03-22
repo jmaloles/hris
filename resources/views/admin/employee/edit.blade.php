@@ -268,7 +268,7 @@
                                                             <label for="SSS" class="col-md-4 control-label">SSS:</label>
 
                                                             <div class="col-md-6">
-                                                                <input name="sss" id="SSS" class="form-control" value="{{ $employee->sss }}" placeholder="##-###-##-##-#">
+                                                                <input name="sss" id="SSS" class="form-control" value="{{ $employee->sss == "" ? $employee->applicant->sss : $employee->sss }}" placeholder="##-###-##-##-#">
                                                             </div>
                                                         </div>
 
@@ -276,7 +276,7 @@
                                                             <label for="pag_ibig" class="col-md-4 control-label">Pag-ibig:</label>
 
                                                             <div class="col-md-6">
-                                                                <input name="pag_ibig" id="pag_ibig" class="form-control" value="{{ $employee->pag_ibig }}" placeholder="####-####-####">
+                                                                <input name="pag_ibig" id="pag_ibig" class="form-control" value="{{ $employee->pag_ibig == "" ? $employee->applicant->pag_ibig : $employee->pag_ibig }}" placeholder="####-####-####">
                                                             </div>
                                                         </div>
 
@@ -284,7 +284,7 @@
                                                             <label for="philhealth" class="col-md-4 control-label">Phil Health:</label>
 
                                                             <div class="col-md-6">
-                                                                <input name="philhealth" id="philhealth" class="form-control" value="{{ $employee->philhealth }}" placeholder="####-#####-##-##">
+                                                                <input name="philhealth" id="philhealth" class="form-control" value="{{ $employee->philhealth == "" ? $employee->applicant->philhealth : $employee->philhealth }}" placeholder="####-#####-##-##">
                                                             </div>
                                                         </div>
 
@@ -292,7 +292,69 @@
                                                             <label for="nbi_clearance" class="col-md-4 control-label">NBI Clearance:</label>
 
                                                             <div class="col-md-6">
-                                                                <input name="nbi_clearance" id="nbi_clearance" class="form-control" value="{{ $employee->nbi_clearance }}">
+                                                                <div class="radio-inline">
+                                                                    <label>
+                                                                        <input type="radio" name="nbi_clearance" id="nbi_clearance" value="YES"
+                                                                        @if($employee->nbi_clearance != "")
+                                                                           @if($employee->nbi_clearance == "YES")
+                                                                              checked
+                                                                           @endif
+                                                                        @elseif($employee->nbi_clearance == "")
+                                                                           @if($employee->applicant->nbi_clearance == "YES")
+                                                                              checked
+                                                                           @endif
+                                                                        @endif
+                                                                        >
+                                                                        YES
+                                                                    </label>
+                                                                </div>
+                                                                <div class="radio-inline">
+                                                                    <label>
+                                                                        <input type="radio" name="nbi_clearance" id="nbi_clearance" value="NO"
+                                                                        @if($employee->nbi_clearance != "")
+                                                                           @if($employee->nbi_clearance == "NO")
+                                                                              checked
+                                                                           @endif
+                                                                        @elseif($employee->nbi_clearance == "")
+                                                                           @if($employee->applicant->nbi_clearance == "NO")
+                                                                              checked
+                                                                           @endif
+                                                                        @endif
+                                                                        >
+                                                                        NO
+                                                                    </label>
+                                                                </div>
+
+                                                                @if ($errors->has('nbi_clearance'))
+                                                                   <span class="help-block">
+                                                                       <strong>{{ $errors->first('nbi_clearance') }}</strong>
+                                                                   </span>
+                                                                @endif
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="form-group{{ $errors->has('annual_physical_exam') ? ' has-error' : '' }}">
+                                                            <label for="annual_physical_exam" class="col-md-4 control-label">Annual Physical Exam:</label>
+
+                                                            <div class="col-md-6">
+                                                                <div class="radio-inline">
+                                                                    <label>
+                                                                        <input type="radio" name="annual_physical_exam" id="annual_physi  cal_exam" value="YES" {{ $employee->annual_physical_exam == "YES" ? "checked" : "" }}>
+                                                                        YES
+                                                                    </label>
+                                                                </div>
+                                                                <div class="radio-inline">
+                                                                    <label>
+                                                                        <input type="radio" name="annual_physical_exam" id="annual_physical_exam" value="NO" {{ $employee->annual_physical_exam == "NO" ? "checked" : "" }}>
+                                                                        NO
+                                                                    </label>
+                                                                </div>
+
+                                                                @if ($errors->has('annual_physical_exam'))
+                                                                   <span class="help-block">
+                                                                       <strong>{{ $errors->first('annual_physical_exam') }}</strong>
+                                                                   </span>
+                                                                @endif
                                                             </div>
                                                         </div>
 
@@ -300,7 +362,7 @@
                                                             <label for="tin" class="col-md-4 control-label">Tax Identificatio Number(TIN):</label>
 
                                                             <div class="col-md-6">
-                                                                <input name="tin" id="tin" class="form-control" value="{{ $employee->tin }}" placeholder="##-#######">
+                                                                <input name="tin" id="tin" class="form-control" value="{{ $employee->tin == '' ? $employee->applicant->tin : $employee->tin }}" placeholder="##-#######">
                                                             </div>
                                                         </div>
 

@@ -11,12 +11,13 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Styles -->
-    <link href="{{ asset('bootstrap-3.3.7/css/bootstrap.css') }}" rel="stylesheet">
-    <link href="{{ asset('bootstrap-3.3.7/css/bootstrap-theme.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/hris.css') }}" rel="stylesheet">
-    <link href="{{ asset('bootstrap-datepicker-1.6.4/css/bootstrap-datepicker3.css') }}" rel="stylesheet">
-    <link href="{{ asset('bootstrap-datepicker-1.6.4/css/bootstrap-datepicker3.standalone.css') }}" rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset('font-awesome-4.7.0/css/font-awesome.css') }}">
+   <link href="{{ asset('bootstrap-3.3.7/css/bootstrap.css') }}" rel="stylesheet">
+   <link href="{{ asset('bootstrap-3.3.7/css/bootstrap-theme.css') }}" rel="stylesheet">
+   <link href="{{ asset('css/hris.css') }}" rel="stylesheet">
+   <link href="{{ asset('bootstrap-datepicker-1.6.4/css/bootstrap-datepicker3.css') }}" rel="stylesheet">
+   <link href="{{ asset('bootstrap-datepicker-1.6.4/css/bootstrap-datepicker3.standalone.css') }}" rel="stylesheet">
+   <link rel="stylesheet" href="{{ asset('font-awesome-4.7.0/css/font-awesome.css') }}">
+   <link rel="stylesheet" href="{{ asset('chosen_v1.6.2/chosen.css') }}">
 
     <!-- Scripts -->
     <script>
@@ -32,6 +33,9 @@
    <script src="{{ asset('momentjs/momentjs.js') }}"></script>
    <script src="{{ asset('adamwdraper-numeral-js/src/numeral.js') }}"></script>
    <script type="text/javascript" src="{{ asset('bower_components/jquery.maskedinput/src/jquery.maskedinput.js') }}"></script>
+   <script src="{{ asset('chosen_v1.6.2/chosen.jquery.min.js') }}" type="text/javascript">
+
+   </script>
 </head>
 <body>
   <div id="app">
