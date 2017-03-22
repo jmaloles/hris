@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class MemorandumTemplate extends Model
+class DisciplinaryActionTemplate extends Model
 {
     //
     protected $fillable = ['sender', 'topic', 'content'];

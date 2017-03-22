@@ -3,31 +3,80 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use File;
 
 class Training extends Model
 {
-    //
-    protected $table = 'employee_training';
-    protected $fillable = ['employee_id', 'title', 'lesson', 'status'];
+   //
+   use SoftDeletes;
 
-    public function employee()
-    {
-    	return $this->belongsTo(Employee::class);
-    }
+   protected $table = 'training';
 
-    public function employee_topic_trainings()
-    {
-    	return $this->hasMany(EmployeeTopicTraining::class, 'employee_training_id');
-    }
+   protected $fillable = ['name'];
 
-    public static function storeTrainingToEmployee($request, $employee)
-    {
-    	$employeeTraining = $employee->employee_training()->save(new Training([
-    		'title' => str_slug($request->get('title'), '-'),
-    		'lesson' => $request->get('lesson'),
-    		'status' => 'ON-PROGRESS'
-		]));
 
-    	return redirect()->to('/user/employee/'.$employee->id.'/training/'.$employeeTraining->id);
-    }
+   public function employees()
+   {
+      return $this->belongsToMany(Employee::class)->withPivot('status');
+   }
+
+   public function topics()
+   {
+      return $this->hasMany(Topic::class);
+   }
+
+   public function training_modules()
+   {
+      return $this->hasMany(TrainingModule::class);
+   }
+
+   public function trainingSlugName()
+   {
+      $tSlug = str_replace(" ", '-', $this->name);
+
+      return $tSlug;
+   }
+
+   public function pathDir()
+   {
+      $trainingDirectory = storage_path('training_modules/') . $this->trainingSlugName();
+
+      return $trainingDirectory;
+   }
+
+   public function getFileCountInsideDir()
+   {
+      $fileDir = File::files($this->pathDir());
+
+      return count($fileDir);
+   }
+
+   public static function storeTrainingToEmployee($request)
+   {
+      $path = storage_path('training_modules/') . str_replace(" ", "-", ucwords(strtolower($request->get('name')), " "));
+      // $file = $request->file('file_path');
+
+      $training = new Training();
+      $training->name = $request->get('name');
+
+      if($training->save()) {
+         $training->training_modules()->save(new TrainingModule([
+            'path' => $path
+         ]));
+
+         File::makeDirectory($path);
+
+         return redirect()->back()->with('msg', 'Training "'. ucwords($training->name, " ") .'" [Directory - ' . str_replace(" ", "-", ucwords(strtolower($request->get('name')), " ")) . '] Module was successfully created');
+      }
+   }
+
+   public static function enrollEmployee($request, $training)
+   {
+      $employeeIds = $request->get('employee');
+
+      $training->employees()->attach($employeeIds, ['status' => 'ON-PROGRESS']);
+
+      return redirect()->back()->with('msg', 'Employees are successfully enrolled.');
+   }
 }

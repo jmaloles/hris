@@ -10,6 +10,7 @@ use App\Exam;
 
 class ApplicantController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      *

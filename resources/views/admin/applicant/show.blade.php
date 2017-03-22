@@ -53,6 +53,7 @@
                             </div>
                         </div>
                     </div>--}}
+
                     <div class="row">
                        <div class="col-lg-3">
                            <form action="" class="form-horizontal">
@@ -153,6 +154,42 @@
                                                             <textarea id="address" class="form-control" style="width: 400px; resize: none;" disabled>{{ $applicant->address }}</textarea>
                                                         </div>
                                                     </div>
+
+                                                    <div class="row">
+                                                       <hr>
+                                                    </div>
+
+                                                    <div class="form-group{{ $errors->has('sss') ? ' has-error' : '' }}">
+                                                      <label for="sss" class="col-md-5 control-label">SSS:</label>
+
+                                                      <div class="col-md-6">
+                                                         <input style="width: 400px;" id="sss" class="form-control" disabled   value="{{ $applicant->sss }}">
+                                                      </div>
+                                                   </div>
+
+                                                   <div class="form-group{{ $errors->has('philhealth') ? ' has-error' : '' }}">
+                                                      <label for="philhealth" class="col-md-5 control-label">Phil Health:</label>
+
+                                                      <div class="col-md-6">
+                                                         <input style="width: 400px;" id="philhealth" class="form-control" disabled  value="{{ $applicant->philhealth }}">
+                                                      </div>
+                                                   </div>
+
+                                                   <div class="form-group{{ $errors->has('pag_ibig') ? ' has-error' : '' }}">
+                                                      <label for="pag_ibig" class="col-md-5 control-label">Pag-ibig:</label>
+
+                                                      <div class="col-md-6">
+                                                         <input style="width: 400px;" id="pag_ibig" class="form-control" disabled value="{{ $applicant->pag_ibig }}">
+                                                      </div>
+                                                   </div>
+
+                                                   <div class="form-group{{ $errors->has('nbi_clearance') ? ' has-error' : '' }}">
+                                                       <label for="nbi_clearance" class="col-md-5 control-label">NBI Clearance:</label>
+
+                                                       <div class="col-md-6">
+                                                           <input style="width: 400px;" id="nbi_clearance" class="form-control" disabled value="{{ $applicant->nbi_clearance }}">
+                                                       </div>
+                                                   </div>
 
                                                 </form>
                                             </div>

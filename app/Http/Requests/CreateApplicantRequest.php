@@ -38,7 +38,12 @@ class CreateApplicantRequest extends FormRequest
             'type_of_employment'    => 'required',
             'emergency_person_name' => 'required',
             'emergency_person_contact' => 'required',
-            'resumePath' => 'mimes:docx,doc|nullable'
+            'resumePath' => 'mimes:docx,doc|nullable',
+            'sss'               => array('unique:applicants,sss', 'regex:/^[0-9]{2}[-][0-9]{3}[-][0-9]{2}[-][0-9]{2}[-][0-9]{1}$/i', 'nullable'),
+            'philhealth'        => array('unique:applicants,philhealth', 'regex:/^[0-9]{4}[-][0-9]{5}[-][0-9]{2}[-][0-9]{2}$/i', 'nullable'),
+            'pag_ibig'          => array('unique:applicants,pag_ibig', 'regex:/^[0-9]{4}[-][0-9]{4}[-][0-9]{4}$/i', 'nullable'),
+            'tin'               => array('unique:applicants,tin', 'regex:/^[0-9]{2}[-][0-9]{7}$/i', 'nullable'),
+            'nbi_clearance'     => 'required'
         ];
     }
 

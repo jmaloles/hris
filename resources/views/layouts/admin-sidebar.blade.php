@@ -13,9 +13,9 @@
             </a>
         </li>
 
-        <li class="nav-item {{ Request::is('interviews*') ? 'active' : '' }} {{--@if(Request::is('interviews*')) active @endif--}}">
-            <a class="nav-link" @if((Request::route()->getName() == 'interviews.index') || (Request::route()->getName() == 'interviews.create')) style="cursor: default;" @else  href="{{ route('interviews.index') }}" @endif>
-                <i class="fa fa-comments-o" aria-hidden="true"></i>&nbsp;&nbsp;Interviews
+        <li class="nav-item {{ Request::is('training*') ? 'active' : '' }} {{--@if(Request::is('training*')) active @endif--}}">
+            <a class="nav-link" @if((Request::route()->getName() == 'training.index') || (Request::route()->getName() == 'training.create')) style="cursor: default;" @else  href="{{ route('training.index') }}" @endif>
+                <i class="fa fa-certificate" aria-hidden="true"></i>&nbsp;&nbsp;Training
             </a>
         </li>
 
@@ -32,9 +32,9 @@
         </li>
 
 
-        <li class="nav-item {{ Request::is('memoranda*') ? 'active' : '' }} {{--@if(Request::is('memoranda*')) active @endif--}}">
-            <a class="nav-link" @if((Request::route()->getName() == 'memoranda.index') || (Request::route()->getName() == 'memoranda.create')) style="cursor: default;" @else  href="{{ route('memoranda.index') }}" @endif>
-                <i class="fa fa-file" aria-hidden="true"></i>&nbsp;&nbsp;Memoranda
+        <li class="nav-item {{ Request::is('disciplinary_action*') ? 'active' : '' }} {{--@if(Request::is('disciplinary_action*')) active @endif--}}">
+            <a class="nav-link" @if((Request::route()->getName() == 'disciplinary_action.index') || (Request::route()->getName() == 'disciplinary_action.create')) style="cursor: default;" @else  href="{{ route('disciplinary_action.index') }}" @endif>
+                <i class="fa fa-file" aria-hidden="true"></i>&nbsp;&nbsp;Disciplinary Actions
             </a>
         </li>
 

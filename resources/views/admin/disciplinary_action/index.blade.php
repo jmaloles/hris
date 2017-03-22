@@ -11,7 +11,7 @@
                         <div class="col-lg-12">
                             <div class="panel-1 panel-trans">
                                 <div class="panel-heading-1">
-                                    <h4><i class="fa fa-file"></i>&nbsp;&nbsp;Memoranda</h4>
+                                    <h4><i class="fa fa-file"></i>&nbsp;&nbsp;Disciplinary Action</h4>
                                 </div>
                             </div>
                         </div>
@@ -20,7 +20,7 @@
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="pull-right">
-                                <a href="{{ route('memoranda.create') }}" class="btn btn-success"><i class="fa fa-plus"></i>&nbsp;&nbsp;Create Memorandum</a>
+                                <a href="{{ route('disciplinary_action.create') }}" class="btn btn-success"><i class="fa fa-plus"></i>&nbsp;&nbsp;Create Disciplinary Action</a>
                             </div>
                         </div>
                     </div>
@@ -31,7 +31,7 @@
                         <div class="col-lg-12">
                             <ul class="nav nav-tabs" role="tablist" style="background-color: white;">
                                 <li role="presentation" class="active">
-                                    <a href="#home" aria-controls="home" role="tab" data-toggle="tab">Memoranda</a>
+                                    <a href="#home" aria-controls="home" role="tab" data-toggle="tab">Disciplinary Action</a>
                                 </li>
                             </ul>
 

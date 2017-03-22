@@ -149,9 +149,9 @@ label {
 }
 
 .error-msg {
-    color: white;
-    background-color: #d9534f;
-    border-color: #b52b27;
+   color: white;
+   background-color: #d9534f;
+   border-color: #b52b27;
 }
 
 .form-control {
@@ -409,4 +409,8 @@ li.nav-item > .nav-link {
 
 .questionnaire > .questionnaire-ans > .radio-inline:last-of-type {
     margin-left: 0rem;
+}
+
+.remove-background-image {
+   background-image: none!important;
 }

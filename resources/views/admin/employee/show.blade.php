@@ -128,7 +128,7 @@
                                              <label for="sss" class="col-md-5 control-label">SSS:</label>
 
                                              <div class="col-md-6">
-                                                <input style="width: 400px;" id="sss" class="form-control" value="{{ $employee->sss }}">
+                                                <input style="width: 400px;" id="sss" class="form-control" value="{{ $employee->sss == "" ? $employee->applicant->sss : $employee->sss }}">
                                              </div>
                                           </div>
 
@@ -136,7 +136,7 @@
                                              <label for="philhealth" class="col-md-5 control-label">Phil Health:</label>
 
                                              <div class="col-md-6">
-                                                <input style="width: 400px;" id="philhealth" class="form-control" value="{{ $employee->philhealth }}">
+                                                <input style="width: 400px;" id="philhealth" class="form-control" value="{{ $employee->philhealth == "" ? $employee->applicant->philhealth : $employee->philhealth }}">
                                              </div>
                                           </div>
 
@@ -144,7 +144,7 @@
                                              <label for="pag_ibig" class="col-md-5 control-label">Pag-ibig:</label>
 
                                              <div class="col-md-6">
-                                                <input style="width: 400px;" id="pag_ibig" class="form-control" value="{{ $employee->pag_ibig }}">
+                                                <input style="width: 400px;" id="pag_ibig" class="form-control" value="{{ $employee->pag_ibig == "" ? $employee->applicant->pag_ibig : $employee->pag_ibig }}">
                                              </div>
                                           </div>
 
@@ -152,7 +152,15 @@
                                              <label for="nbi_clearance" class="col-md-5 control-label">NBI Clearance:</label>
 
                                              <div class="col-md-6">
-                                                <input style="width: 400px;" id="nbi_clearance" class="form-control" value="{{ $employee->nbi_clearance }}">
+                                                <input style="width: 400px;" id="nbi_clearance" class="form-control" value="{{ $employee->nbi_clearance == "" ? $employee->applicant->nbi_clearance : $employee->nbi_clearance }}">
+                                             </div>
+                                          </div>
+
+                                          <div class="form-group{{ $errors->has('annual_physical_exam') ? ' has-error' : '' }}">
+                                             <label for="annual_physical_exam" class="col-md-5 control-label">Annual Physical Exam:</label>
+
+                                             <div class="col-md-6">
+                                                <input style="width: 400px;" id="nbi_clearance" class="form-control" value="{{ $employee->annual_physical_exam }}">
                                              </div>
                                           </div>
 
@@ -160,7 +168,7 @@
                                              <label for="tin" class="col-md-5 control-label">Tax Identification Number (TIN):</label>
 
                                              <div class="col-md-6">
-                                                <input style="width: 400px;" id="tin" class="form-control" value="{{ $employee->tin }}">
+                                                <input style="width: 400px;" id="tin" class="form-control" value="{{ $employee->tin == "" ? $employee->applicant->tin : $employee->tin }}">
                                              </div>
                                           </div>
                                           </fieldset>
@@ -250,6 +258,43 @@
                                              <textarea id="address" class="form-control" style="width: 400px; resize: none;" disabled>{{ $employee->applicant->address }}</textarea>
                                           </div>
                                        </div>
+
+                                       <div class="row">
+                                          <hr>
+                                       </div>
+
+                                       <div class="form-group{{ $errors->has('sss') ? ' has-error' : '' }}">
+                                         <label for="sss" class="col-md-5 control-label">SSS:</label>
+
+                                         <div class="col-md-6">
+                                            <input style="width: 400px;" id="sss" class="form-control" disabled   value="{{ $employee->applicant->sss }}">
+                                         </div>
+                                      </div>
+
+                                      <div class="form-group{{ $errors->has('philhealth') ? ' has-error' : '' }}">
+                                         <label for="philhealth" class="col-md-5 control-label">Phil Health:</label>
+
+                                         <div class="col-md-6">
+                                            <input style="width: 400px;" id="philhealth" class="form-control" disabled  value="{{ $employee->applicant->philhealth }}">
+                                         </div>
+                                      </div>
+
+                                      <div class="form-group{{ $errors->has('pag_ibig') ? ' has-error' : '' }}">
+                                         <label for="pag_ibig" class="col-md-5 control-label">Pag-ibig:</label>
+
+                                         <div class="col-md-6">
+                                            <input style="width: 400px;" id="pag_ibig" class="form-control" disabled value="{{ $employee->applicant->pag_ibig }}">
+                                         </div>
+                                      </div>
+
+                                      <div class="form-group{{ $errors->has('nbi_clearance') ? ' has-error' : '' }}">
+                                          <label for="nbi_clearance" class="col-md-5 control-label">NBI Clearance:</label>
+
+                                          <div class="col-md-6">
+                                              <input style="width: 400px;" id="nbi_clearance" class="form-control" disabled value="{{ $employee->applicant->nbi_clearance }}">
+                                          </div>
+                                      </div>
+
                                     </form>
                                  </div>
                               </div>
@@ -425,7 +470,7 @@
             </div><!-- /.modal-content -->
          </div><!-- /.modal-dialog -->
       </form>
-   </div><!-- /.modal --> 
+   </div><!-- /.modal -->
 
    <div class="modal fade" tabindex="-1" role="dialog" id="FileVacationLeaveModal">
       <form class="form-horizontal" action="{{ route('admin_user_employee_file_vacation_leaves', $employee->id) }}" method="POST">
