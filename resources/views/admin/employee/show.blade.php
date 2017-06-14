@@ -88,14 +88,6 @@
                                     <form class="form-horizontal">
 
                                        <div class="row">
-                                          <a href="{{ route('user_employee_view_training', $employee->id) }}">View Training</a>
-                                       </div>
-
-                                       <div class="row">
-                                          <hr style="width: 170%;">
-                                       </div>
-
-                                       <div class="row">
                                           <fieldset disabled>
                                           <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
                                              <label for="email" class="col-md-5 control-label">Company E-mail:</label>
