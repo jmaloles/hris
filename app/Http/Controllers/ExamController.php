@@ -7,119 +7,119 @@ use App\Exam;
 
 class ExamController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-    
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        $exams = Exam::all();
+   /**
+   * Create a new controller instance.
+   *
+   * @return void
+   */
+   // public function __construct()
+   // {
+   //    $this->middleware('auth');
+   // }
 
-        return view('admin.exam.index', compact('exams'));
-    }
+   /**
+   * Display a listing of the resource.
+   *
+   * @return \Illuminate\Http\Response
+   */
+   public function index()
+   {
+      $exams = Exam::all();
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
+      return view('admin.exam.index', compact('exams'));
+   }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
+   /**
+   * Show the form for creating a new resource.
+   *
+   * @return \Illuminate\Http\Response
+   */
+   public function create()
+   {
+      //
+   }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
+   /**
+   * Store a newly created resource in storage.
+   *
+   * @param  \Illuminate\Http\Request  $request
+   * @return \Illuminate\Http\Response
+   */
+   public function store(Request $request)
+   {
+      //
+   }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
+   /**
+   * Display the specified resource.
+   *
+   * @param  int  $id
+   * @return \Illuminate\Http\Response
+   */
+   public function show($id)
+   {
+      //
+   }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
+   /**
+   * Show the form for editing the specified resource.
+   *
+   * @param  int  $id
+   * @return \Illuminate\Http\Response
+   */
+   public function edit($id)
+   {
+      //
+   }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
+   /**
+   * Update the specified resource in storage.
+   *
+   * @param  \Illuminate\Http\Request  $request
+   * @param  int  $id
+   * @return \Illuminate\Http\Response
+   */
+   public function update(Request $request, $id)
+   {
+      //
+   }
 
-    public function examGuard()
-    {
-        return view('admin.exam.guard');
-    }
+   /**
+   * Remove the specified resource from storage.
+   *
+   * @param  int  $id
+   * @return \Illuminate\Http\Response
+   */
+   public function destroy($id)
+   {
+      //
+   }
 
-    public function applicantTakeExam(Exam $exam)
-    {
-        if($exam->category == "WEB-DEVELOPER") {
-            return view('admin.exam.it', compact('exam'));
-        } else if ($exam->category == "RECEPTIONIST") {
-            return view('admin.exam.receptionist', compact('exam'));
-        }
-    }
+   public function examGuard()
+   {
+      return view('admin.exam.guard');
+   }
 
-    public function submitExam(Request $request, Exam $exam)
-    {
-        $submitExam = Exam::submitExam($request, $exam);
+   public function applicantTakeExam(Exam $exam)
+   {
+      if($exam->category == "WEB-DEVELOPER") {
+         return view('admin.exam.it', compact('exam'));
+      } else if ($exam->category == "RECEPTIONIST") {
+         return view('admin.exam.receptionist', compact('exam'));
+      }
+   }
 
-        return $submitExam;
-    }
+   public function submitExam(Request $request, Exam $exam)
+   {
+      $submitExam = Exam::submitExam($request, $exam);
 
-    public function submitReceptionistExam(Request $request, Exam $exam)
-    {
-        $submitReceptionistExam = Exam::submitReceptionistExam($request, $exam);
+      return $submitExam;
+   }
 
-        return $submitReceptionistExam;
-    }
+   public function submitReceptionistExam(Request $request, Exam $exam)
+   {
+      $submitReceptionistExam = Exam::submitReceptionistExam($request, $exam);
+
+      return $submitReceptionistExam;
+   }
 }
